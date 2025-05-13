@@ -22,10 +22,9 @@ Brand highlights and footer section
 <sub>![image](https://github.com/user-attachments/assets/c86d2ec2-b9e9-4587-bfcc-61a989f8d66b)</sub>
 
 📂 Project Structure
-bash
-Copy
-Edit
-urbanproject/
+
+
+<urbanproject/
 │
 ├── index.html       # Home/Landing page
 ├── shop.html        # Product listing page
@@ -33,7 +32,7 @@ urbanproject/
 ├
 │ 
 ├── assets/images/          # All assets like banners, logos, product images
-└── README.md        # Project documentation
+└── README.md        # Project documentation>
 
 🛠️ Features
 ✅ Responsive layout for mobile, tablet, and desktop
