@@ -105,8 +105,6 @@ Integrate payment gateway APIs
 
 User authentication and profile management
 
-Use a framework like React or Vue for scalabilit
-
 🧑‍💻 Author
 [Binu Dubey]
 Frontend Developer | Passionate about design & web experiences
