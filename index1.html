@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URBAN THREADS | Premium Streetwear</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#111827',
+            secondary: '#4F46E5',
+            accent: '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+    }
+    
+    /* Custom animations */
+    @keyframes zoomIn {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.05);
+      }
+    }
+    
+    .zoom-effect {
+      overflow: hidden;
+    }
+    
+    .zoom-effect img {
+      transition: transform 8s ease;
+    }
+    
+    .zoom-effect.active img {
+      transform: scale(1.1);
+    }
+    
+    /* Newsletter button animation */
+    @keyframes expandWidth {
+      from {
+        width: auto;
+      }
+      to {
+        width: 100%;
+      }
+    }
+    
+    .expand-button {
+      transition: all 0.5s ease;
+    }
+    
+    .expand-button.active {
+      animation: expandWidth 0.5s forwards;
+    }
+    
+    /* Testimonial animation */
+    .testimonial-container {
+      position: relative;
+      height: 300px;
+    }
+    
+    .testimonial-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .testimonial-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Staggered animation for grid items */
+    .stagger-grid-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .stagger-grid-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* About section grid animations */
+    .about-grid-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .about-grid-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .about-image {
+      overflow: hidden;
+    }
+    
+    .about-image img {
+      transition: transform 1.5s ease;
+    }
+    
+    .about-image.active img {
+      transform: scale(1.1);
+    }
+    
+    /* FAQ accordion styles */
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 1rem 0;
+    }
+    
+    .faq-toggle {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+    
+    /* Latest articles animation */
+    .article-item {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    
+    .article-item.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .article-image {
+      overflow: hidden;
+    }
+    
+    .article-image img {
+      transition: transform 1.2s ease;
+    }
+    
+    .article-image.active img {
+      transform: scale(1.08);
+    }
+    
+    /* Toast notification */
+    .toast-notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background-color: white;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.4s ease-in-out;
+      text-align: left;
+      width: 100%;
+      max-width: 420px;
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Checkout Modal */
+    .checkout-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .checkout-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-modal.show .checkout-content {
+      transform: translateY(0);
+    }
+    
+    /* Success Modal */
+    .success-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .success-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .success-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      padding: 40px;
+      transform: scale(0.9);
+      transition: all 0.3s ease;
+    }
+    
+    .success-modal.show .success-content {
+      transform: scale(1);
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #10b981;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 40px;
+    }
+    
+    /* Wishlist modal */
+    .wishlist-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 400px;
+      max-width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 1000;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    
+    .wishlist-modal.show {
+      transform: translateX(0);
+    }
+    
+    .wishlist-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .wishlist-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Wishlist heart animation */
+    .wishlist-heart {
+      transition: all 0.3s ease;
+    }
+    
+    .wishlist-heart.active {
+      color: #ef4444;
+      transform: scale(1.2);
+    }
+    
+    .wishlist-heart:hover {
+      transform: scale(1.1);
+    }
+    
+    .wishlist-heart.pulse {
+      animation: heartPulse 0.5s ease;
+    }
+    
+    @keyframes heartPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.show {
+      transform: translateX(0);
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header/Navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#" class="flex items-center">
+          <span class="text-xl font-bold text-primary">URBAN THREADS</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">Home</a>
+          <a href="shop.html" class="text-gray-700 hover:text-secondary font-medium">Shop</a>
+          <a href="#category" class="text-gray-700 hover:text-secondary font-medium">Collections</a>
+          <a href="#about" class="text-gray-700 hover:text-secondary font-medium">About</a>
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">Contact</a>
+        </nav>
+
+        <!-- Icons -->
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-gray-700 hover:text-secondary">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a href="#" class="text-gray-700 hover:text-secondary">
+            <i class="fa-regular fa-user"></i>
+          </a>
+          <a href="#" id="wishlist-icon" class="text-gray-700 hover:text-secondary relative">
+            <i class="fa-regular fa-heart wishlist-heart"></i>
+            <span class="wishlist-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+          </a>
+          <a href="#" id="cart-icon" class="text-gray-700 hover:text-secondary relative">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge absolute -top-2 -right-2 bg-secondary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <button class="md:hidden text-gray-700" id="mobile-menu-button">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="p-4 border-b flex justify-between items-center">
+      <span class="text-xl font-bold text-primary">URBAN THREADS</span>
+      <button id="close-mobile-menu" class="text-gray-700">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+    </div>
+    <nav class="p-4">
+      <ul class="space-y-4">
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium">Home</a>
+        </li>
+        <li>
+          <a href="shop.html" class="block py-2 text-gray-700 hover:text-secondary font-medium">Shop</a>
+        </li>
+        <li>
+          <a href="#category" class="block py-2 text-gray-700 hover:text-secondary font-medium mobile-menu-link">Collections</a>
+        </li>
+        <li>
+          <a href="#about" class="block py-2 text-gray-700 hover:text-secondary font-medium mobile-menu-link">About</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="p-4 border-t">
+      <div class="flex space-x-4 mb-4">
+        <a href="#" class="flex-1 bg-secondary text-white py-2 rounded-md text-center font-medium">
+          Sign In
+        </a>
+        <a href="#" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-md text-center font-medium">
+          Register
+        </a>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-gray-700">Language</span>
+        <select class="border border-gray-300 rounded-md px-2 py-1">
+          <option>English</option>
+          <option>Spanish</option>
+          <option>French</option>
+        </select>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-gray-700">Currency</span>
+        <select class="border border-gray-300 rounded-md px-2 py-1">
+          <option>USD ($)</option>
+          <option>EUR (€)</option>
+          <option>GBP (£)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section with Zoom and Slide Up Animation -->
+  <section class="relative h-[500px] bg-gray-900 overflow-hidden zoom-effect" id="hero-section">
+    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+         alt="Hero Image" 
+         class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+         id="hero-image">
+    <div class="absolute inset-0 hero-gradient"></div>
+    <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+      <div class="max-w-xl" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Winter Collection 2025</h1>
+        <p class="text-lg text-gray-200 mb-8">Discover our latest designs that blend comfort with urban style.</p>
+        <div class="flex space-x-4">
+          <a href="shop.html" class="bg-white text-primary px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
+            Shop Now
+          </a>
+          <a href="#category" class="border border-white text-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-primary transition">
+            View Lookbook
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section with Staggered Animation -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-3xl font-bold text-primary" data-aos="fade-right">Featured Products</h2>
+        <a href="#" class="text-secondary font-medium flex items-center" data-aos="fade-left">
+          View All <i class="fa-solid fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="featured-products">
+        <!-- Product 1 -->
+        <div class="group stagger-grid-item" data-index="0">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" 
+                 alt="Oversized Graphic Tee" 
+                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="shop.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-secondary text-white text-sm px-3 py-1 rounded-md">New</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Oversized Graphic Tee</h3>
+          <div class="flex justify-between items-center mt-2">
+            <span class="text-gray-700">$39.99</span>
+            <div class="flex text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+              <span class="text-gray-500 text-sm ml-1">(42)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="group stagger-grid-item" data-index="1">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1036&q=80" 
+                 alt="Premium Zip Hoodie" 
+                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="shop.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-accent text-white text-sm px-3 py-1 rounded-md">Best Seller</span>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Premium Zip Hoodie</h3>
+          <div class="flex justify-between items-center mt-2">
+            <span class="text-gray-700">$69.99</span>
+            <div class="flex text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-gray-500 text-sm ml-1">(87)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="group stagger-grid-item" data-index="2">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1072&q=80" 
+                 alt="Urban Snapback Cap" 
+                 class="w-full h-80 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="shop.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Urban Snapback Cap</h3>
+          <div class="flex justify-between items-center mt-2">
+            <span class="text-gray-700">$29.99</span>
+            <div class="flex text-yellow-400">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <span class="text-gray-500 text-sm ml-1">(36)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collection Filters Section with Staggered Animation -->
+  <section class="py-12 bg-gray-50" id="category">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary mb-8" data-aos="fade-up">Shop by Category</h2>
+      
+      <div class="relative">
+        <div class="flex overflow-x-auto scrollbar-hide space-x-4 pb-4" id="category-container">
+          <!-- T-Shirts -->
+          <div class="flex-shrink-0 w-64 group stagger-grid-item" data-index="0">
+            <div class="relative overflow-hidden rounded-lg mb-3 h-80 zoom-effect">
+              <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                   alt="T-Shirts Collection" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-xl font-bold text-white">T-Shirts</h3>
+                <p class="text-gray-200 text-sm mb-3">24 products</p>
+                <a href="shop.html" class="inline-block bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-secondary hover:text-white transition">
+                  Shop Now
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Hoodies -->
+          <div class="flex-shrink-0 w-64 group stagger-grid-item" data-index="1">
+            <div class="relative overflow-hidden rounded-lg mb-3 h-80 zoom-effect">
+              <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" 
+                   alt="Hoodies Collection" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-xl font-bold text-white">Hoodies</h3>
+                <p class="text-gray-200 text-sm mb-3">18 products</p>
+                <a href="shop.html" class="inline-block bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-secondary hover:text-white transition">
+                  Shop Now
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Accessories -->
+          <div class="flex-shrink-0 w-64 group stagger-grid-item" data-index="2">
+            <div class="relative overflow-hidden rounded-lg mb-3 h-80 zoom-effect">
+              <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                   alt="Accessories Collection" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-xl font-bold text-white">Accessories</h3>
+                <p class="text-gray-200 text-sm mb-3">32 products</p>
+                <a href="#" class="inline-block bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-secondary hover:text-white transition">
+                  Shop Now
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bundles -->
+          <div class="flex-shrink-0 w-64 group stagger-grid-item" data-index="3">
+            <div class="relative overflow-hidden rounded-lg mb-3 h-80 zoom-effect">
+              <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                   alt="Bundles Collection" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-xl font-bold text-white">Bundles</h3>
+                <p class="text-gray-200 text-sm mb-3">8 bundles</p>
+                <a href="shop.html" class="inline-block bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-secondary hover:text-white transition">
+                  Shop Now
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Limited Edition -->
+          <div class="flex-shrink-0 w-64 group stagger-grid-item" data-index="4">
+            <div class="relative overflow-hidden rounded-lg mb-3 h-80 zoom-effect">
+              <img src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                   alt="Limited Edition Collection" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="text-xl font-bold text-white">Limited Edition</h3>
+                <p class="text-gray-200 text-sm mb-3">6 products</p>
+                <a href="shop.html" class="inline-block bg-white text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-secondary hover:text-white transition">
+                  Shop Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scroll indicators -->
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 hidden md:block">
+          <button class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+        </div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block">
+          <button class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section with Enhanced Grid Animation -->
+  <section class="py-16 bg-white" id="about">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary mb-12 text-center" data-aos="fade-up">About Our Brand</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Image 1 -->
+        <div class="md:col-span-5 about-grid-item about-image" data-index="0">
+          <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" 
+               alt="Urban fashion" 
+               class="w-full h-full object-cover rounded-lg shadow-lg">
+        </div>
+        
+        <!-- Content 1 -->
+        <div class="md:col-span-7 flex flex-col justify-center about-grid-item" data-index="1">
+          <h3 class="text-2xl font-bold text-primary mb-4">Crafted with Passion</h3>
+          <p class="text-gray-700 mb-6">
+            At Urban Threads, we believe that clothing is more than just fabric—it's a form of self-expression. Each piece in our collection is thoughtfully designed and crafted with meticulous attention to detail, ensuring both style and durability.
+          </p>
+          <p class="text-gray-700">
+            Our team of designers draws inspiration from urban landscapes, contemporary art, and street culture to create pieces that are both timeless and on-trend. We're committed to using premium materials and ethical manufacturing processes to deliver products that look good and feel even better.
+          </p>
+        </div>
+        
+        <!-- Content 2 -->
+        <div class="md:col-span-7 flex flex-col justify-center about-grid-item" data-index="2">
+          <h3 class="text-2xl font-bold text-primary mb-4">Sustainable Practices</h3>
+          <p class="text-gray-700 mb-6">
+            Sustainability isn't just a buzzword for us—it's a core value that guides everything we do. From sourcing eco-friendly materials to implementing energy-efficient manufacturing processes, we're constantly looking for ways to reduce our environmental footprint.
+          </p>
+          <p class="text-gray-700">
+            We've partnered with local artisans and ethical factories to ensure fair wages and safe working conditions throughout our supply chain. By choosing Urban Threads, you're not just investing in quality clothing—you're supporting a more sustainable and equitable fashion industry.
+          </p>
+        </div>
+        
+        <!-- Image 2 -->
+        <div class="md:col-span-5 about-grid-item about-image" data-index="3">
+          <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80" 
+               alt="Sustainable fashion" 
+               class="w-full h-full object-cover rounded-lg shadow-lg">
+        </div>
+        
+        <!-- Image 3 (Full Width) -->
+        <div class="md:col-span-12 about-grid-item about-image" data-index="4">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+               alt="Urban Threads collection" 
+               class="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg">
+        </div>
+        
+        <!-- Three Column Features -->
+        <div class="md:col-span-4 about-grid-item" data-index="5">
+          <div class="text-center p-6 bg-gray-50 rounded-lg h-full">
+            <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-shirt text-secondary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Premium Materials</h3>
+            <p class="text-gray-700">
+              We source only the highest quality fabrics and materials to ensure comfort, durability, and style that lasts.
+            </p>
+          </div>
+        </div>
+        
+        <div class="md:col-span-4 about-grid-item" data-index="6">
+          <div class="text-center p-6 bg-gray-50 rounded-lg h-full">
+            <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-pen-ruler text-secondary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Thoughtful Design</h3>
+            <p class="text-gray-700">
+              Every stitch, seam, and detail is carefully considered to create pieces that are both functional and fashionable.
+            </p>
+          </div>
+        </div>
+        
+        <div class="md:col-span-4 about-grid-item" data-index="7">
+          <div class="text-center p-6 bg-gray-50 rounded-lg h-full">
+            <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa-solid fa-earth-americas text-secondary text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3">Ethical Production</h3>
+            <p class="text-gray-700">
+              We partner with factories that prioritize worker welfare and environmental responsibility in their operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary mb-12 text-center" data-aos="fade-up">Frequently Asked Questions</h2>
+      
+      <div class="max-w-3xl mx-auto">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">How do I find my size?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>We provide detailed size guides for each product category. You can find the size chart on each product page under the "Size Guide" link. Our products generally follow standard sizing, but we recommend measuring yourself and comparing with our size chart for the best fit. If you're between sizes, we typically recommend sizing up for a more comfortable fit.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">What is your shipping policy?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>We offer free standard shipping on all orders over $75 within the continental United States. Standard shipping typically takes 3-5 business days. Express shipping is available for an additional fee and delivers within 1-2 business days. International shipping is available to select countries, with delivery times varying by location. All orders are processed within 1-2 business days.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">What is your return policy?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>We accept returns within 30 days of delivery for a full refund or exchange. Items must be unworn, unwashed, and with all original tags attached. Return shipping is free for exchanges, but customers are responsible for return shipping costs for refunds unless the item is defective or we made an error. Please visit our Returns page to initiate the return process.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="250">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">How do I care for my Urban Threads products?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>Each product comes with specific care instructions on the tag. Generally, we recommend machine washing cold with like colors, using mild detergent, and avoiding bleach. Tumble dry on low heat or lay flat to dry for best results. For premium items like our hoodies and jackets, turning them inside out before washing helps preserve the colors and prints. Always refer to the care label for specific instructions.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">Do you offer gift cards?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>Yes, we offer digital gift cards in denominations ranging from $25 to $200. Gift cards are delivered via email and can be used for online purchases. They never expire and can be used across multiple purchases until the balance is depleted. Gift cards make perfect presents for friends and family who appreciate quality streetwear.</p>
+          </div>
+        </div>
+        
+        <!-- FAQ Item 6 -->
+        <div class="faq-item py-4" data-aos="fade-up" data-aos-delay="350">
+          <div class="flex justify-between items-center cursor-pointer faq-question">
+            <h3 class="text-lg font-medium text-primary">Are your products sustainable?</h3>
+            <i class="fa-solid fa-chevron-down text-gray-500 faq-toggle"></i>
+          </div>
+          <div class="faq-answer text-gray-700">
+            <p>Sustainability is a core value at Urban Threads. We're continuously working to improve our environmental footprint by using organic and recycled materials where possible, reducing waste in our production processes, and partnering with factories that adhere to strict environmental standards. Our Eco Collection features products made from 100% organic cotton or recycled materials. We're transparent about our journey toward sustainability and share regular updates on our progress.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Articles Section with Animation -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary mb-12 text-center" data-aos="fade-up">Latest Articles</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Article 1 -->
+        <div class="article-item" data-index="0">
+          <div class="article-image rounded-lg overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Summer Style Guide" 
+                 class="w-full h-64 object-cover transition-transform duration-700">
+          </div>
+          <div class="flex gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">STYLE GUIDE</span>
+            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">Winter</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Winter 2025 Style Guide: Effortless Urban Looks</h3>
+          <p class="text-gray-700 mb-4">Discover the essential pieces and styling tips for creating effortless urban looks this winter season.</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>June 15, 2025</span>
+            <span class="mx-2">•</span>
+            <span>5 min read</span>
+          </div>
+        </div>
+        
+        <!-- Article 2 -->
+        <div class="article-item" data-index="1">
+          <div class="article-image rounded-lg overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80" 
+                 alt="Sustainable Fashion" 
+                 class="w-full h-64 object-cover transition-transform duration-700">
+          </div>
+          <div class="flex gap-2 mb-2">
+            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">SUSTAINABILITY</span>
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">INNOVATION</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">The Future of Sustainable Streetwear: Our Commitment</h3>
+          <p class="text-gray-700 mb-4">Learn about our journey toward more sustainable practices and how we're reducing our environmental impact.</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>June 8, 2025</span>
+            <span class="mx-2">•</span>
+            <span>7 min read</span>
+          </div>
+        </div>
+        
+        <!-- Article 3 -->
+        <div class="article-item" data-index="2">
+          <div class="article-image rounded-lg overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1581539250439-c96689b516dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1365&q=80" 
+                 alt="Behind the Scenes" 
+                 class="w-full h-64 object-cover transition-transform duration-700">
+          </div>
+          <div class="flex gap-2 mb-2">
+            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded">BEHIND THE SCENES</span>
+            <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded">DESIGN</span>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-2">Behind the Scenes: Creating Our Summer Collection</h3>
+          <p class="text-gray-700 mb-4">Get an exclusive look at our design process and the inspiration behind our latest summer collection.</p>
+          <div class="flex items-center text-sm text-gray-500">
+            <span>May 30, 2025</span>
+            <span class="mx-2">•</span>
+            <span>6 min read</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-10">
+        <a href="#" class="inline-block bg-secondary text-white px-6 py-3 rounded-md font-medium hover:bg-secondary/90 transition">
+          View All Articles
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pair Well With / Recommendations Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary mb-2" data-aos="fade-up">Pair Well With</h2>
+      <p class="text-gray-600 mb-10" data-aos="fade-up" data-aos-delay="100">Complete your look with these perfect pairings</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6" id="recommendations">
+        <!-- Product 1 -->
+        <div class="group stagger-grid-item" data-index="0">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1015&q=80" 
+                 alt="Urban Tote Bag" 
+                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="product-detail.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Urban Black Tshirt</h3>
+          <span class="text-gray-700">$34.99</span>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="group stagger-grid-item" data-index="1">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1065&q=80" 
+                 alt="Minimalist Watch" 
+                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="product-detail.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Nike Casuals</h3>
+          <span class="text-gray-700">$89.99</span>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="group stagger-grid-item" data-index="2">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" 
+                 alt="Leather Wallet" 
+                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="product-detail.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Urban White sneakers</h3>
+          <span class="text-gray-700">$49.99</span>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="group stagger-grid-item" data-index="3">
+          <div class="relative overflow-hidden rounded-lg mb-4 zoom-effect">
+            <img src="assets/images/cap_black.png" 
+                 alt="Black_cap" 
+                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute bottom-4 right-4">
+              <a href="product-detail.html" class="bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="text-lg font-medium text-primary">Urban Cap</h3>
+          <span class="text-gray-700">$59.99</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bundle Deals Promo Section -->
+  <section class="py-16 bg-gray-900 text-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div data-aos="fade-right">
+          <h2 class="text-3xl font-bold mb-4">Bundle Up & Save</h2>
+          <p class="text-gray-300 mb-6">Get our most popular items at a discounted price when you buy them together.</p>
+          
+          <div class="bg-gray-800 p-6 rounded-lg mb-6">
+            <h3 class="text-xl font-semibold mb-4">Urban Essentials Bundle</h3>
+            <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex items-center">
+                <span class="bg-secondary text-white text-xs px-2 py-1 rounded mr-2">1</span>
+                <span>Premium Zip Hoodie</span>
+                <span class="ml-2 text-gray-400 line-through">$69.99</span>
+              </div>
+              <div class="flex items-center">
+                <span class="bg-secondary text-white text-xs px-2 py-1 rounded mr-2">2</span>
+                <span>Urban Snapback Cap</span>
+                <span class="ml-2 text-gray-400 line-through">$29.99</span>
+              </div>
+              <div class="flex items-center">
+                <span class="bg-secondary text-white text-xs px-2 py-1 rounded mr-2">3</span>
+                <span>Urban Tote Bag</span>
+                <span class="ml-2 text-gray-400 line-through">$34.99</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <span class="text-gray-400">Total Value:</span>
+                <span class="text-gray-400 line-through ml-2">$134.97</span>
+              </div>
+              <div>
+                <span class="text-gray-400">Bundle Price:</span>
+                <span class="text-accent font-bold ml-2">$99.99</span>
+              </div>
+            </div>
+            
+            <div class="bg-accent text-white text-center py-2 rounded-md mb-4">
+              Save $34.98 (26% Off)
+            </div>
+            
+            <a href="shop.html#bundle" class="block text-center bg-white text-primary font-medium py-3 rounded-md hover:bg-secondary hover:text-white transition">
+              View Bundle
+            </a>
+          </div>
+        </div>
+        
+        <div class="relative" data-aos="fade-left">
+          <div class="zoom-effect">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Bundle Products" 
+                 class="rounded-lg w-full h-auto">
+          </div>
+          <div class="absolute top-4 right-4">
+            <span class="bg-accent text-white text-sm px-3 py-1 rounded-md">26% OFF</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials Section with Animation -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-primary text-center mb-2" data-aos="fade-up">What Our Customers Say</h2>
+      <p class="text-gray-600 text-center mb-12" data-aos="fade-up" data-aos-delay="100">Don't just take our word for it</p>
+      
+      <div class="testimonial-container" id="testimonial-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card active" data-index="0">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="flex text-yellow-400 mb-4">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-gray-700 mb-6">"The quality of their hoodies is unmatched. Super comfortable and the designs are unique. I've received so many compliments!"</p>
+            <div class="flex items-center">
+              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-primary">Sarah Johnson</h4>
+                <p class="text-gray-500 text-sm">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card" data-index="1">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="flex text-yellow-400 mb-4">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-gray-700 mb-6">"Fast shipping and the bundle deal was a steal! The cap fits perfectly and the tote bag is much more durable than I expected."</p>
+            <div class="flex items-center">
+              <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-primary">Michael Chen</h4>
+                <p class="text-gray-500 text-sm">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card" data-index="2">
+          <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="flex text-yellow-400 mb-4">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <p class="text-gray-700 mb-6">"I love the minimalist aesthetic of their t-shirts. The fabric is breathable and perfect for everyday wear. Will definitely be ordering more!"</p>
+            <div class="flex items-center">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+              <div>
+                <h4 class="font-medium text-primary">Olivia Martinez</h4>
+                <p class="text-gray-500 text-sm">Verified Buyer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Testimonial Navigation -->
+      <div class="flex justify-center mt-8 space-x-2">
+        <button class="w-3 h-3 rounded-full bg-gray-300 testimonial-dot active" data-index="0"></button>
+        <button class="w-3 h-3 rounded-full bg-gray-300 testimonial-dot" data-index="1"></button>
+        <button class="w-3 h-3 rounded-full bg-gray-300 testimonial-dot" data-index="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section with Animation -->
+  <section class="py-16 bg-orange-600 relative overflow-hidden" id="newsletter-section">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center relative z-10">
+        <h2 class="text-3xl font-bold text-white mb-4" data-aos="fade-up">Join Our Community</h2>
+        <p class="text-gray-200 mb-8" data-aos="fade-up" data-aos-delay="100">Subscribe to our newsletter for exclusive deals, style tips, and new releases.</p>
+        
+        <form class="flex flex-col md:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+          <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-md focus:outline-none">
+          <button type="submit" id="subscribe-button" class="bg-white text-secondary font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition expand-button">
+            Subscribe
+          </button>
+        </form>
+        
+        <p class="text-gray-300 text-sm mt-4" data-aos="fade-up" data-aos-delay="300">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast-notification">
+    <div class="flex items-start">
+      <div class="flex-shrink-0 pt-0.5">
+        <i class="fa-solid fa-circle-check text-green-500 text-xl"></i>
+      </div>
+      <div class="ml-3 w-0 flex-1">
+        <p class="text-sm font-medium text-gray-900" id="toastTitle">Item added to cart</p>
+        <p class="mt-1 text-sm text-gray-500" id="toastMessage">Premium Zip Hoodie has been added to your cart.</p>
+        <div class="mt-3 flex space-x-3">
+          <button id="toastViewCart" class="bg-secondary text-white text-xs px-3 py-2 rounded-md font-medium hover:bg-secondary/90 transition">
+            View Cart
+          </button>
+          <button id="toastCheckout" class="bg-black text-white text-xs px-3 py-2 rounded-md font-medium hover:bg-gray-800 transition">
+            Checkout Now
+          </button>
+        </div>
+      </div>
+      <div class="ml-4 flex-shrink-0 flex">
+        <button id="closeToast" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="checkout-modal">
+    <div class="checkout-content">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-lg font-bold">Checkout</h3>
+        <button id="closeCheckout" class="text-gray-500 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Cart Items (Left Column) -->
+          <div class="lg:col-span-2">
+            <h4 class="text-lg font-medium mb-4">Your Cart</h4>
+            <div id="checkoutItems" class="space-y-4">
+              <!-- Cart items will be inserted here by JavaScript -->
+            </div>
+          </div>
+          
+          <!-- Order Summary (Right Column) -->
+          <div>
+            <div class="bg-gray-50 rounded-lg p-6">
+              <h4 class="text-lg font-medium mb-4">Order Summary</h4>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span id="subtotalAmount" class="font-medium">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Shipping</span>
+                  <span id="shippingAmount" class="font-medium">$5.99</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Tax (8%)</span>
+                  <span id="taxAmount" class="font-medium">$0.00</span>
+                </div>
+                <div class="border-t border-gray-200 pt-3 flex justify-between font-bold">
+                  <span>Total</span>
+                  <span id="totalAmount" class="text-lg">$0.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Shipping Information -->
+            <div class="mt-6">
+              <h4 class="text-lg font-medium mb-4">Shipping Information</h4>
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                    <input type="text" id="firstName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <input type="text" id="lastName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+                <div>
+                  <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                  <input type="text" id="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                    <input type="text" id="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="zipCode" class="block text-sm font-medium text-gray-700">ZIP Code</label>
+                    <input type="text" id="zipCode" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Payment Information -->
+            <div class="mt-6">
+              <h4 class="text-lg font-medium mb-4">Payment Information</h4>
+              <div class="space-y-4">
+                <div>
+                  <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
+                  <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="expDate" class="block text-sm font-medium text-gray-700">Expiration Date</label>
+                    <input type="text" id="expDate" placeholder="MM/YY" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button id="confirmOrderBtn" class="w-full bg-secondary text-white py-3 rounded-md font-medium hover:bg-secondary/90 transition mt-6">
+              Confirm Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Success Modal -->
+  <div id="successModal" class="success-modal">
+    <div class="success-content">
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-2xl font-bold mb-2">Order Confirmed!</h3>
+      <p class="text-gray-600 mb-6">Thank you for your purchase. Your order has been confirmed and will be shipped soon.</p>
+      <button id="backToShopBtn" class="bg-secondary text-white py-3 px-6 rounded-md font-medium hover:bg-secondary/90 transition">
+        Back to Shop
+      </button>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="wishlist-overlay" id="wishlistOverlay"></div>
+  <div class="wishlist-modal" id="wishlistModal">
+    <div class="p-4 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Your Wishlist</h3>
+      <button id="closeWishlist" class="text-gray-500 hover:text-gray-700">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+    </div>
+    
+    <div class="p-6">
+      <div id="wishlistItems" class="space-y-4">
+        <!-- Wishlist items will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <!-- Company Info -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">URBAN THREADS</h3>
+          <p class="text-gray-400 mb-4">Premium streetwear for the modern urban lifestyle.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Shop Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Shop</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">All Products</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">T-Shirts</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Hoodies</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Bundles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Gift Cards</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Sustainability</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Affiliates</a></li>
+          </ul>
+        </div>
+        
+        <!-- Support Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Support</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Shipping & Returns</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Size Guide</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 Urban Threads. All rights reserved.</p>
+          <div class="flex items-center space-x-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Mastercard" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="PayPal" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968220.png" alt="Apple Pay" class="h-8 w-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS animation library
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+      
+      // Hero image fade in
+      setTimeout(() => {
+        const heroImage = document.getElementById('hero-image');
+        if (heroImage) {
+          heroImage.style.opacity = '0.8';
+        }
+      }, 300);
+      
+      // Initialize Intersection Observer for animations
+      initScrollAnimations();
+      
+      // Initialize testimonial rotation
+      initTestimonials();
+      
+      // Initialize newsletter button animation
+      initNewsletterAnimation();
+      
+      // Initialize FAQ accordion
+      initFaqAccordion();
+      
+      // Initialize cart and wishlist functionality
+      initCart();
+      initWishlist();
+      
+      // Initialize modals
+      initToastNotification();
+      initCheckoutModal();
+      initSuccessModal();
+      initWishlistModal();
+      
+      // Initialize mobile menu
+      initMobileMenu();
+      
+      // Simple horizontal scroll for category filters
+      const scrollContainer = document.querySelector('.scrollbar-hide');
+      const leftButton = document.querySelector('.fa-chevron-left').parentElement;
+      const rightButton = document.querySelector('.fa-chevron-right').parentElement;
+      
+      if (scrollContainer && leftButton && rightButton) {
+        leftButton.addEventListener('click', function() {
+          scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        
+        rightButton.addEventListener('click', function() {
+          scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+      }
+    });
+    
+    // Initialize mobile menu
+    function initMobileMenu() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMobileMenu = document.getElementById('close-mobile-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+      
+      // Open mobile menu
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.add('show');
+        mobileMenuOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+      
+      // Close mobile menu
+      closeMobileMenu.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        mobileMenuOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on overlay click
+      mobileMenuOverlay.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        mobileMenuOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on menu link click (for anchor links)
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('show');
+          mobileMenuOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
+          mobileMenu.classList.remove('show');
+          mobileMenuOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Initialize scroll-based animations
+    function initScrollAnimations() {
+      // Zoom effect on scroll
+      const zoomElements = document.querySelectorAll('.zoom-effect');
+      
+      // Staggered grid animations
+      const featuredProducts = document.querySelectorAll('#featured-products .stagger-grid-item');
+      const categoryItems = document.querySelectorAll('#category-container .stagger-grid-item');
+      const recommendationItems = document.querySelectorAll('#recommendations .stagger-grid-item');
+      
+      // About section animations
+      const aboutGridItems = document.querySelectorAll('.about-grid-item');
+      const aboutImages = document.querySelectorAll('.about-image');
+      
+      // Latest articles animations
+      const articleItems = document.querySelectorAll('.article-item');
+      const articleImages = document.querySelectorAll('.article-image');
+      
+      // Create observer for zoom effect
+      const zoomObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply zoom observer
+      zoomElements.forEach(element => {
+        zoomObserver.observe(element);
+      });
+      
+      // Create observer for staggered animations
+      const staggerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index);
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, index * 150); // 150ms delay between each item
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply stagger observer to all grid items
+      featuredProducts.forEach(item => staggerObserver.observe(item));
+      categoryItems.forEach(item => staggerObserver.observe(item));
+      recommendationItems.forEach(item => staggerObserver.observe(item));
+      
+      // Create observer for about section animations
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index);
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, index * 200); // 200ms delay between each item
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply about observer
+      aboutGridItems.forEach(item => aboutObserver.observe(item));
+      
+      // Create observer for about images
+      const aboutImageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply about image observer
+      aboutImages.forEach(image => aboutImageObserver.observe(image));
+      
+      // Create observer for article items
+      const articleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index);
+            setTimeout(() => {
+              entry.target.classList.add('active');
+            }, index * 200); // 200ms delay between each item
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply article observer
+      articleItems.forEach(item => articleObserver.observe(item));
+      
+      // Create observer for article images
+      const articleImageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // Apply article image observer
+      articleImages.forEach(image => articleImageObserver.observe(image));
+    }
+    
+    // Initialize testimonial rotation
+    function initTestimonials() {
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      const dots = document.querySelectorAll('.testimonial-dot');
+      let currentIndex = 0;
+      let interval;
+      
+      // Function to show a specific testimonial
+      function showTestimonial(index) {
+        // Hide all testimonials
+        testimonials.forEach(testimonial => {
+          testimonial.classList.remove('active');
+        });
+        
+        // Remove active class from all dots
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+        });
+        
+        // Show the selected testimonial
+        testimonials[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentIndex = index;
+      }
+      
+      // Set up click handlers for dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          showTestimonial(index);
+          resetInterval();
+        });
+      });
+      
+      // Auto-rotate testimonials
+      function startInterval() {
+        interval = setInterval(() => {
+          let nextIndex = (currentIndex + 1) % testimonials.length;
+          showTestimonial(nextIndex);
+        }, 5000); // Change testimonial every 5 seconds
+      }
+      
+      function resetInterval() {
+        clearInterval(interval);
+        startInterval();
+      }
+      
+      // Start the auto-rotation
+      startInterval();
+      
+      // Also trigger testimonial change on scroll
+      const testimonialContainer = document.getElementById('testimonial-container');
+      let lastScrollTop = 0;
+      
+      window.addEventListener('scroll', () => {
+        const rect = testimonialContainer.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+        
+        if (isVisible) {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          // Determine scroll direction
+          if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            let nextIndex = (currentIndex + 1) % testimonials.length;
+            showTestimonial(nextIndex);
+            resetInterval();
+          } else if (scrollTop < lastScrollTop) {
+            // Scrolling up
+            let prevIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(prevIndex);
+            resetInterval();
+          }
+          
+          // Update last scroll position
+          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        }
+      }, { passive: true });
+    }
+    
+    // Initialize newsletter button animation
+    function initNewsletterAnimation() {
+      const subscribeButton = document.getElementById('subscribe-button');
+      const newsletterSection = document.getElementById('newsletter-section');
+      
+      // Create observer for newsletter section
+      const newsletterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate button after a delay
+            setTimeout(() => {
+              subscribeButton.classList.add('active');
+            }, 1000);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      // Apply observer
+      newsletterObserver.observe(newsletterSection);
+      
+      // Reset button animation on mouse out
+      subscribeButton.addEventListener('mouseout', () => {
+        subscribeButton.classList.remove('active');
+      });
+      
+      // Add animation on hover
+      subscribeButton.addEventListener('mouseover', () => {
+        subscribeButton.classList.add('active');
+      });
+    }
+    
+    // Initialize FAQ accordion
+    function initFaqAccordion() {
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+          // Toggle active class
+          const isActive = item.classList.contains('active');
+          
+          // Close all FAQ items
+          faqItems.forEach(faqItem => {
+            faqItem.classList.remove('active');
+          });
+          
+          // Open clicked item if it wasn't already open
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+    }
+    
+    // Cart Functionality
+    function initCart() {
+      // Initialize cart from localStorage or create empty cart
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      updateCartCount();
+      
+      // Cart icon click
+      const cartIcon = document.getElementById('cart-icon');
+      if (cartIcon) {
+        cartIcon.addEventListener('click', function(e) {
+          e.preventDefault();
+          openCheckoutModal();
+        });
+      }
+      
+      // Update cart count
+      function updateCartCount() {
+        const cartBadge = document.querySelector('.cart-badge');
+        if (cartBadge) {
+          const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+          cartBadge.textContent = totalItems;
+        }
+      }
+    }
+    
+    // Wishlist Functionality
+    function initWishlist() {
+      // Initialize wishlist from localStorage or create empty wishlist
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      updateWishlistCount();
+      
+      // Wishlist icon click
+      const wishlistIcon = document.getElementById('wishlist-icon');
+      if (wishlistIcon) {
+        wishlistIcon.addEventListener('click', function(e) {
+          e.preventDefault();
+          openWishlistModal();
+        });
+      }
+      
+      // Update wishlist count
+      function updateWishlistCount() {
+        const wishlistBadge = document.querySelector('.wishlist-badge');
+        if (wishlistBadge) {
+          if (wishlist.length > 0) {
+            wishlistBadge.textContent = wishlist.length;
+            wishlistBadge.classList.remove('hidden');
+          } else {
+            wishlistBadge.classList.add('hidden');
+          }
+        }
+      }
+    }
+    
+    // Toast Notification
+    function initToastNotification() {
+      const toastNotification = document.getElementById('toastNotification');
+      const closeToast = document.getElementById('closeToast');
+      const toastViewCart = document.getElementById('toastViewCart');
+      const toastCheckout = document.getElementById('toastCheckout');
+      
+      // Close toast
+      closeToast.addEventListener('click', function() {
+        hideToast();
+      });
+      
+      // View cart button
+      toastViewCart.addEventListener('click', function() {
+        hideToast();
+        openCheckoutModal();
+      });
+      
+      // Checkout button
+      toastCheckout.addEventListener('click', function() {
+        hideToast();
+        openCheckoutModal();
+      });
+    }
+    
+    // Show toast notification
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').innerText = title;
+      document.getElementById('toastMessage').innerText = message;
+
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Hide toast notification
+    function hideToast() {
+      const toastNotification = document.getElementById('toastNotification');
+      toastNotification.classList.remove('show');
+    }
+    
+    // Checkout Modal
+    function initCheckoutModal() {
+      const checkoutModal = document.getElementById('checkoutModal');
+      const closeCheckout = document.getElementById('closeCheckout');
+      const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+      
+      // Close checkout modal
+      closeCheckout.addEventListener('click', function() {
+        checkoutModal.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on outside click
+      checkoutModal.addEventListener('click', function(e) {
+        if (e.target === checkoutModal) {
+          checkoutModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && checkoutModal.classList.contains('show')) {
+          checkoutModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Confirm order button
+      confirmOrderBtn.addEventListener('click', function() {
+        // Clear cart
+        localStorage.setItem('cart', JSON.stringify([]));
+        
+        // Update cart count
+        const cartBadge = document.querySelector('.cart-badge');
+        if (cartBadge) {
+          cartBadge.textContent = '0';
+        }
+        
+        // Close checkout modal
+        checkoutModal.classList.remove('show');
+        
+        // Show success modal
+        openSuccessModal();
+      });
+    }
+    
+    // Open checkout modal
+    function openCheckoutModal() {
+      const checkoutModal = document.getElementById('checkoutModal');
+      const checkoutItems = document.getElementById('checkoutItems');
+      const subtotalAmount = document.getElementById('subtotalAmount');
+      const shippingAmount = document.getElementById('shippingAmount');
+      const taxAmount = document.getElementById('taxAmount');
+      const totalAmount = document.getElementById('totalAmount');
+      
+      // Get cart from localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Clear checkout items
+      checkoutItems.innerHTML = '';
+      
+      // Add cart items to checkout
+      if (cart.length === 0) {
+        checkoutItems.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+        subtotalAmount.textContent = '$0.00';
+        shippingAmount.textContent = '$0.00';
+        taxAmount.textContent = '$0.00';
+        totalAmount.textContent = '$0.00';
+      } else {
+        let subtotal = 0;
+        
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+          
+          const itemElement = document.createElement('div');
+          itemElement.className = 'flex items-center bg-white p-4 rounded-lg shadow-sm';
+          itemElement.innerHTML = `
+            <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-medium">${item.name}</h4>
+              <p class="text-sm text-gray-500">Color: ${item.color} | Size: ${item.size}</p>
+              <div class="flex justify-between mt-2">
+                <div class="flex items-center">
+                  <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded-l-md hover:bg-gray-300 transition decrease-quantity" data-index="${index}">
+                    <i class="fa-solid fa-minus text-xs"></i>
+                  </button>
+                  <span class="px-3 py-1 border-y border-gray-200">${item.quantity}</span>
+                  <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded-r-md hover:bg-gray-300 transition increase-quantity" data-index="${index}">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                  </button>
+                </div>
+                <div class="flex items-center">
+                  <span class="font-medium mr-3">$${itemTotal.toFixed(2)}</span>
+                  <button class="text-red-500 hover:text-red-700 transition remove-item" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          checkoutItems.appendChild(itemElement);
+        });
+        
+        // Add event listeners to quantity buttons and remove buttons
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (cart[index].quantity > 1) {
+              cart[index].quantity--;
+              localStorage.setItem('cart', JSON.stringify(cart));
+              openCheckoutModal(); // Refresh the modal
+              updateCartCount();
+            }
+          });
+        });
+        
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            cart[index].quantity++;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            openCheckoutModal(); // Refresh the modal
+            updateCartCount();
+          });
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            openCheckoutModal(); // Refresh the modal
+            updateCartCount();
+          });
+        });
+        
+        // Calculate totals
+        const shipping = subtotal >= 75 ? 0 : 5.99;
+        const tax = subtotal * 0.08;
+        const total = subtotal + shipping + tax;
+        
+        // Update totals
+        subtotalAmount.textContent = `$${subtotal.toFixed(2)}`;
+        shippingAmount.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+        taxAmount.textContent = `$${tax.toFixed(2)}`;
+        totalAmount.textContent = `$${total.toFixed(2)}`;
+      }
+      
+      // Show checkout modal
+      checkoutModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Success Modal
+    function initSuccessModal() {
+      const successModal = document.getElementById('successModal');
+      const backToShopBtn = document.getElementById('backToShopBtn');
+      
+      // Back to shop button
+      backToShopBtn.addEventListener('click', function() {
+        successModal.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        window.location.href = 'shop.html';
+      });
+      
+      // Close on outside click
+      successModal.addEventListener('click', function(e) {
+        if (e.target === successModal) {
+          successModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && successModal.classList.contains('show')) {
+          successModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Open success modal
+    function openSuccessModal() {
+      const successModal = document.getElementById('successModal');
+      successModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Wishlist Modal
+    function initWishlistModal() {
+      const wishlistModal = document.getElementById('wishlistModal');
+      const wishlistOverlay = document.getElementById('wishlistOverlay');
+      const closeWishlist = document.getElementById('closeWishlist');
+      
+      // Close wishlist modal
+      closeWishlist.addEventListener('click', function() {
+        wishlistModal.classList.remove('show');
+        wishlistOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on overlay click
+      wishlistOverlay.addEventListener('click', function() {
+        wishlistModal.classList.remove('show');
+        wishlistOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && wishlistModal.classList.contains('show')) {
+          wishlistModal.classList.remove('show');
+          wishlistOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Open wishlist modal
+    function openWishlistModal() {
+      const wishlistModal = document.getElementById('wishlistModal');
+      const wishlistOverlay = document.getElementById('wishlistOverlay');
+      const wishlistItems = document.getElementById('wishlistItems');
+      
+      // Get wishlist from localStorage
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      
+      // Clear wishlist items
+      wishlistItems.innerHTML = '';
+      
+      // Add wishlist items
+      if (wishlist.length === 0) {
+        wishlistItems.innerHTML = '<p class="text-gray-500">Your wishlist is empty.</p>';
+      } else {
+        wishlist.forEach((item, index) => {
+          const itemElement = document.createElement('div');
+          itemElement.className = 'flex items-center bg-white p-4 rounded-lg shadow-sm mb-4';
+          itemElement.innerHTML = `
+            <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-medium">${item.name}</h4>
+              <p class="text-sm text-gray-500">Color: ${item.color}</p>
+              <div class="flex justify-between mt-2">
+                <span class="font-medium">$${item.price.toFixed(2)}</span>
+                <div class="flex space-x-2">
+                  <button class="bg-secondary text-white px-3 py-1 rounded text-sm hover:bg-secondary/90 transition add-to-cart-wishlist" data-index="${index}">
+                    Add to Cart
+                  </button>
+                  <button class="text-red-500 hover:text-red-700 transition remove-wishlist" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          wishlistItems.appendChild(itemElement);
+        });
+        
+        // Add event listeners to add to cart and remove buttons
+        document.querySelectorAll('.add-to-cart-wishlist').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const item = wishlist[index];
+            
+            // Add to cart
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({
+              name: item.name,
+              price: item.price,
+              color: item.color,
+              size: 'M', // Default size
+              quantity: 1,
+              image: item.image
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show toast notification
+            showToast(
+              'Item added to cart',
+              `${item.name} has been added to your cart.`
+            );
+          });
+        });
+        
+        document.querySelectorAll('.remove-wishlist').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            openWishlistModal(); // Refresh the modal
+            updateWishlistCount();
+          });
+        });
+      }
+      
+      // Show wishlist modal
+      wishlistModal.classList.add('show');
+      wishlistOverlay.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartBadge = document.querySelector('.cart-badge');
+      if (cartBadge) {
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartBadge.textContent = totalItems;
+      }
+    }
+    
+    // Update wishlist count
+    function updateWishlistCount() {
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      const wishlistBadge = document.querySelector('.wishlist-badge');
+      if (wishlistBadge) {
+        if (wishlist.length > 0) {
+          wishlistBadge.textContent = wishlist.length;
+          wishlistBadge.classList.remove('hidden');
+        } else {
+          wishlistBadge.classList.add('hidden');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

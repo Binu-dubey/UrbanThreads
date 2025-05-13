@@ -1,0 +1,3175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Zip Hoodie | URBAN THREADS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* Custom Styles for Product Page */
+    /* Thumbnail Styles */
+    .thumbnail-btn {
+      border: 2px solid transparent;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .thumbnail-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .thumbnail-btn.active {
+      border-color: #4F46E5;
+    }
+
+    /* Color Swatch Styles */
+    .color-swatch {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: 2px solid #e5e7eb;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .color-swatch:hover {
+      transform: scale(1.1);
+    }
+
+    .color-swatch.active {
+      border-color: #4F46E5;
+    }
+
+    .color-swatch.active::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0.75rem;
+      height: 0.75rem;
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    /* Size Button Styles */
+    .size-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.375rem;
+      background-color: white;
+      transition: all 0.2s ease;
+      min-width: 3rem;
+      text-align: center;
+    }
+
+    .size-btn:hover {
+      border-color: #4F46E5;
+      color: #4F46E5;
+    }
+
+    .size-btn.active {
+      background-color: #4F46E5;
+      color: white;
+      border-color: #4F46E5;
+    }
+
+    .size-btn.out-of-stock {
+      color: #9ca3af;
+      background-color: #f3f4f6;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    /* Tab Styles */
+    .tab-btn {
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #4F46E5;
+    }
+
+    .tab-btn.active {
+      color: #4F46E5;
+      border-color: #4F46E5;
+    }
+
+    /* Size Chart Modal Styles */
+    .size-unit-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.375rem;
+      background-color: white;
+      transition: all 0.2s ease;
+    }
+
+    .size-unit-btn:hover {
+      border-color: #4F46E5;
+      color: #4F46E5;
+    }
+
+    .size-unit-btn.active {
+      background-color: #4F46E5;
+      color: white;
+      border-color: #4F46E5;
+    }
+
+    /* Compare Colors Modal Styles */
+    .color-compare-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      border: 2px solid #e5e7eb;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .color-compare-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .color-compare-btn.active {
+      border-color: #4F46E5;
+    }
+
+    .color-compare-btn.active::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1rem;
+    }
+
+    /* Image Zoom Effect */
+    .image-zoom-container {
+      overflow: hidden;
+    }
+
+    .image-zoom {
+      transition: transform 0.5s ease;
+    }
+
+    .image-zoom-container:hover .image-zoom {
+      transform: scale(1.1);
+    }
+
+    /* Scrollable Containers */
+    .thumbnails-container {
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
+    }
+
+    .thumbnails-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .thumbnails-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .thumbnails-container::-webkit-scrollbar-thumb {
+      background-color: #e5e7eb;
+      border-radius: 20px;
+    }
+
+    .pair-well-container {
+      scrollbar-width: thin;
+      scrollbar-color: #e5e7eb transparent;
+    }
+
+    .pair-well-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .pair-well-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .pair-well-container::-webkit-scrollbar-thumb {
+      background-color: #e5e7eb;
+      border-radius: 20px;
+    }
+    
+    /* Compare color thumbnails */
+    .compare-thumbnail {
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    
+    .compare-thumbnail.active {
+      border-color: #4F46E5;
+    }
+    
+    .color-comparison-item img.main-compare-img {
+      cursor: pointer;
+    }
+
+    /* NEW STYLES FOR ENHANCED FEATURES */
+    
+    /* Toast notification */
+ .toast-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+  text-align: left;
+  width: 100%;
+  max-width: 420px;
+  pointer-events: none; /* allows clicks to pass through unless you add interaction */
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.toast-notification .flex {
+  flex-wrap: wrap;
+}
+
+.toast-notification .mt-3.flex.space-x-3 {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+
+    
+    /* Buy Now Button */
+    .buy-now-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .product-image-container:hover .buy-now-btn {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    /* Wishlist Heart Animation */
+    .wishlist-heart {
+      transition: all 0.3s ease;
+    }
+    
+    .wishlist-heart.active {
+      color: #ef4444;
+      transform: scale(1.2);
+    }
+    
+    .wishlist-heart:hover {
+      transform: scale(1.1);
+    }
+    
+    .wishlist-heart.pulse {
+      animation: heartPulse 0.5s ease;
+    }
+    
+    @keyframes heartPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Cart Animation */
+    .cart-badge {
+      transition: all 0.3s ease;
+    }
+    
+    .cart-badge.pulse {
+      animation: cartPulse 0.5s ease;
+    }
+    
+    @keyframes cartPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Add to Cart Button Animation */
+    .add-to-cart-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .add-to-cart-btn.pulse {
+      animation: btnPulse 0.5s ease;
+    }
+    
+    @keyframes btnPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Checkout Modal */
+    .checkout-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .checkout-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .checkout-modal.show .checkout-content {
+      transform: translateY(0);
+    }
+  
+    .checkout-shipping-section {
+    width: 100% !important;
+    grid-column: span 2 / span 2;
+    }
+
+    /* Success Modal */
+    .success-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .success-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .success-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      padding: 40px;
+      transform: scale(0.9);
+      transition: all 0.3s ease;
+    }
+    
+    .success-modal.show .success-content {
+      transform: scale(1);
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #10b981;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 20px;
+      color: white;
+      font-size: 40px;
+    }
+    
+    /* Product Card Hover Effects */
+    .product-card {
+      transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Testimonial Slider Animation */
+    .testimonial-slide {
+      transition: all 0.5s ease;
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    
+    .mobile-menu.show {
+      transform: translateX(0);
+    }
+    
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Wishlist modal */
+    .wishlist-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 400px;
+      max-width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 1000;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      overflow-y: auto;
+    }
+    
+    .wishlist-modal.show {
+      transform: translateX(0);
+    }
+    
+    .wishlist-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .wishlist-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#111827',
+            secondary: '#4F46E5',
+            accent: '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <!-- Preload hoodie variant images -->
+  <link rel="preload" as="image" href="assets/images/hoodie-black.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-black-back.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-black-side.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-black-detail.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-black-model.png">
+
+  <link rel="preload" as="image" href="assets/images/hoodie-navy.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-navy-back.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-navy-side.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-navy-detail.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-navy-model.png">
+
+  <link rel="preload" as="image" href="assets/images/hoodie-gray.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-gray-back.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-gray-side.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-gray-detail.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-gray-model.png">
+
+  <link rel="preload" as="image" href="assets/images/hoodie-burgundy.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-burgundy-back.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-burgundy-side.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-burgundy-detail.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-burgundy-model.png">
+
+  <link rel="preload" as="image" href="assets/images/hoodie-green.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-green-back.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-green-side.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-green-detail.png">
+  <link rel="preload" as="image" href="assets/images/hoodie-green-model.png">
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header/Navigation -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="/" class="flex items-center">
+          <span class="text-xl font-bold text-primary">URBAN THREADS</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="/index1.html" class="text-gray-700 hover:text-secondary font-medium">Home</a>
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">Shop</a>
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">Collections</a>
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">About</a>
+          <a href="#" class="text-gray-700 hover:text-secondary font-medium">Contact</a>
+        </nav>
+
+        <!-- Icons -->
+        <div class="flex items-center space-x-4">
+          <a href="#" class="text-gray-700 hover:text-secondary">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a href="#" class="text-gray-700 hover:text-secondary">
+            <i class="fa-regular fa-user"></i>
+          </a>
+          <a href="#" id="wishlist-icon" class="text-gray-700 hover:text-secondary relative">
+            <i class="fa-regular fa-heart wishlist-heart"></i>
+            <span class="wishlist-badge absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+          </a>
+          <a href="#" id="cart-icon" class="text-gray-700 hover:text-secondary relative">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge absolute -top-2 -right-2 bg-secondary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <button class="md:hidden text-gray-700" id="mobile-menu-button">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="p-4 border-b flex justify-between items-center">
+      <span class="text-xl font-bold text-primary">URBAN THREADS</span>
+      <button id="close-mobile-menu" class="text-gray-700">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+    </div>
+    <nav class="p-4">
+      <ul class="space-y-4">
+        <li>
+          <a href="/" class="block py-2 text-gray-700 hover:text-secondary font-medium">Home</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium">Shop</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium mobile-menu-link">Collections</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium mobile-menu-link">About</a>
+        </li>
+        <li>
+          <a href="#" class="block py-2 text-gray-700 hover:text-secondary font-medium">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="p-4 border-t">
+      <div class="flex space-x-4 mb-4">
+        <a href="#" class="flex-1 bg-secondary text-white py-2 rounded-md text-center font-medium">
+          Sign In
+        </a>
+        <a href="#" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-md text-center font-medium">
+          Register
+        </a>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-gray-700">Language</span>
+        <select class="border border-gray-300 rounded-md px-2 py-1">
+          <option>English</option>
+          <option>Spanish</option>
+          <option>French</option>
+        </select>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-gray-700">Currency</span>
+        <select class="border border-gray-300 rounded-md px-2 py-1">
+          <option>USD ($)</option>
+          <option>EUR (€)</option>
+          <option>GBP (£)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumbs -->
+  <div class="bg-white border-b">
+    <div class="container mx-auto px-4 py-3">
+      <div class="flex items-center text-sm text-gray-500">
+        <a href="/" class="hover:text-secondary">Home</a>
+        <span class="mx-2">/</span>
+        <a href="#" class="hover:text-secondary">Hoodies</a>
+        <span class="mx-2">/</span>
+        <span class="text-gray-700">Premium Zip Hoodie</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Product Section -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Product Images (Left Column) -->
+      <div>
+        <!-- Main Image -->
+        <div class="bg-white rounded-lg overflow-hidden mb-4 image-zoom-container relative product-image-container">
+          <img id="mainImage" src="assets/images/hoodie-black.png" alt="Premium Zip Hoodie" class="w-full h-auto object-cover image-zoom">
+          <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition">Buy Now</button>
+          <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn">
+            <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+          </button>
+        </div>
+        
+       <div class="relative">
+         <div class="thumbnails-container overflow-x-auto flex space-x-2 pb-2">
+            <!-- Thumbnails will be injected here by JavaScript -->
+         </div>
+          
+          <!-- Scroll Indicators -->
+          <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-primary p-1 rounded-full shadow-md hover:bg-secondary hover:text-white transition hidden md:block thumbnail-scroll-left">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-primary p-1 rounded-full shadow-md hover:bg-secondary hover:text-white transition hidden md:block thumbnail-scroll-right">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Product Details (Right Column) -->
+      <div>
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <!-- Product Title and Price -->
+          <h1 class="text-2xl md:text-3xl font-bold text-primary mb-2">Premium Zip Hoodie</h1>
+          <div class="flex items-center mb-4">
+            <span class="text-xl font-bold text-primary mr-3">$69.99</span>
+            <span class="text-gray-500 line-through">$89.99</span>
+            <span class="ml-3 bg-accent text-white text-xs px-2 py-1 rounded">SAVE 22%</span>
+          </div>
+          
+          <!-- Ratings -->
+          <div class="flex items-center mb-6">
+            <div class="flex text-yellow-400 mr-2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <a href="#reviews" class="text-sm text-gray-600 hover:text-secondary">87 Reviews</a>
+          </div>
+          
+          <!-- Color Variants -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label class="font-medium text-gray-700">Color: <span id="selectedColor">Black</span></label>
+              <button id="compareColorsBtn" class="text-sm text-secondary hover:underline">Compare Colors</button>
+            </div>
+            <div class="flex space-x-3" id="colorOptions">
+              <button class="color-swatch active" data-color="Black" data-image-prefix="hoodie-black" style="background-color: #111827;"></button>
+              <button class="color-swatch" data-color="Navy" data-image-prefix="hoodie-navy" style="background-color: #1e3a8a;"></button>
+              <button class="color-swatch" data-color="Gray" data-image-prefix="hoodie-gray" style="background-color: #6b7280;"></button>
+              <button class="color-swatch" data-color="Burgundy" data-image-prefix="hoodie-burgundy" style="background-color: #9f1239;"></button>
+              <button class="color-swatch" data-color="Forest Green" data-image-prefix="hoodie-green" style="background-color: #14532d;"></button>
+            </div>
+          </div>
+          
+          <!-- Size Selection -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label class="font-medium text-gray-700">Size: <span id="selectedSize">Select Size</span></label>
+              <button id="sizeChartBtn" class="text-sm text-secondary hover:underline">Size Chart</button>
+            </div>
+            <div class="flex flex-wrap gap-2" id="sizeOptions">
+              <button class="size-btn" data-size="XS">XS</button>
+              <button class="size-btn" data-size="S">S</button>
+              <button class="size-btn" data-size="M">M</button>
+              <button class="size-btn" data-size="L">L</button>
+              <button class="size-btn" data-size="XL">XL</button>
+              <button class="size-btn" data-size="XXL">XXL</button>
+            </div>
+          </div>
+          
+          <!-- Quantity -->
+          <div class="mb-6">
+            <label class="font-medium text-gray-700 block mb-2">Quantity</label>
+            <div class="flex">
+              <button id="decreaseQuantity" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-300 transition">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <input type="number" id="quantity" value="1" min="1" max="10" class="w-16 text-center border-y border-gray-200 py-2 focus:outline-none">
+              <button id="increaseQuantity" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-300 transition">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Add to Cart Button -->
+          <button id="addToCartBtn" class="add-to-cart-btn w-full bg-secondary text-white py-3 rounded-md font-medium hover:bg-secondary/90 transition mb-4 flex items-center justify-center">
+            <i class="fa-solid fa-bag-shopping mr-2"></i>
+            Add to Cart
+          </button>
+          
+          <!-- Wishlist Button -->
+          <button id="addToWishlistBtn" class="w-full border border-gray-300 text-gray-700 py-3 rounded-md font-medium hover:bg-gray-100 transition flex items-center justify-center">
+            <i class="fa-regular fa-heart wishlist-heart mr-2"></i>
+            Add to Wishlist
+          </button>
+          
+          <!-- Product Features -->
+          <div class="mt-6 space-y-3">
+            <div class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+              <span class="text-gray-700">Premium heavyweight cotton blend (320 GSM)</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+              <span class="text-gray-700">Durable metal YKK zipper with custom pull</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+              <span class="text-gray-700">Ribbed cuffs and hem for improved fit</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
+              <span class="text-gray-700">Split kangaroo pocket with hidden phone compartment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product Information Tabs -->
+    <div class="mt-12">
+      <div class="border-b border-gray-200">
+        <div class="flex overflow-x-auto">
+          <button class="tab-btn active py-3 px-6 font-medium border-b-2 border-secondary" data-tab="description">
+            Description
+          </button>
+          <button class="tab-btn py-3 px-6 font-medium border-b-2 border-transparent" data-tab="details">
+            Product Details
+          </button>
+          <button class="tab-btn py-3 px-6 font-medium border-b-2 border-transparent" data-tab="shipping">
+            Shipping & Returns
+          </button>
+          <button class="tab-btn py-3 px-6 font-medium border-b-2 border-transparent" data-tab="reviews">
+            Reviews (87)
+          </button>
+        </div>
+      </div>
+      
+      <div class="py-6">
+        <!-- Description Tab -->
+        <div id="description" class="tab-content active">
+          <div class="prose max-w-none">
+            <p class="mb-4">Our Premium Zip Hoodie is the perfect blend of comfort and style for your everyday urban adventures. Crafted from a heavyweight cotton blend fabric, this hoodie offers exceptional warmth and durability while maintaining a soft feel against your skin.</p>
+            
+            <p class="mb-4">The modern fit is designed to be flattering without being restrictive, giving you the freedom to move while maintaining a sleek silhouette. The split kangaroo pocket provides ample storage for your essentials, with a hidden inner compartment to securely store your phone or wallet.</p>
+            
+            <p class="mb-4">Each hoodie features our signature minimalist embroidery on the left chest and a subtle woven label at the hem. The premium YKK zipper ensures smooth operation and long-lasting durability, while the metal pull adds a touch of sophistication.</p>
+            
+            <p>Whether you're layering up for a chilly morning commute or winding down after a workout, this versatile hoodie is the perfect companion for the modern urban lifestyle.</p>
+          </div>
+        </div>
+        
+        <!-- Product Details Tab -->
+        <div id="details" class="tab-content hidden">
+          <div class="prose max-w-none">
+            <h3 class="text-lg font-medium mb-4">Materials & Care</h3>
+            <ul class="list-disc pl-5 mb-6 space-y-2">
+              <li>80% Cotton, 20% Polyester</li>
+              <li>320 GSM heavyweight fabric</li>
+              <li>YKK metal zipper with custom pull</li>
+              <li>Ribbed cuffs and hem</li>
+              <li>Split kangaroo pocket with hidden phone compartment</li>
+              <li>Embroidered logo on left chest</li>
+              <li>Woven label at hem</li>
+            </ul>
+            
+            <h3 class="text-lg font-medium mb-4">Care Instructions</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              <li>Machine wash cold with like colors</li>
+              <li>Do not bleach</li>
+              <li>Tumble dry low</li>
+              <li>Cool iron if needed</li>
+              <li>Do not dry clean</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Shipping Tab -->
+        <div id="shipping" class="tab-content hidden">
+          <div class="prose max-w-none">
+            <h3 class="text-lg font-medium mb-4">Shipping Information</h3>
+            <p class="mb-4">We offer the following shipping options for all domestic orders:</p>
+            
+            <div class="overflow-x-auto mb-6">
+              <table class="min-w-full border border-gray-200">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="py-2 px-4 border-b text-left">Shipping Method</th>
+                    <th class="py-2 px-4 border-b text-left">Delivery Time</th>
+                    <th class="py-2 px-4 border-b text-left">Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 px-4 border-b">Standard Shipping</td>
+                    <td class="py-2 px-4 border-b">3-5 business days</td>
+                    <td class="py-2 px-4 border-b">$5.99</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="py-2 px-4 border-b">Express Shipping</td>
+                    <td class="py-2 px-4 border-b">1-2 business days</td>
+                    <td class="py-2 px-4 border-b">$12.99</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b">Free Shipping</td>
+                    <td class="py-2 px-4 border-b">5-7 business days</td>
+                    <td class="py-2 px-4 border-b">Free on orders over $75</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <h3 class="text-lg font-medium mb-4">Return Policy</h3>
+            <p class="mb-4">We want you to love your URBAN THREADS purchase. If for any reason you're not completely satisfied, we accept returns within 30 days of delivery for a full refund or exchange.</p>
+            
+            <p class="mb-4">To be eligible for a return, your item must be unused and in the same condition that you received it. It must also be in the original packaging with all tags attached.</p>
+            
+            <p>Please note that return shipping costs are the responsibility of the customer unless the return is due to a defect or error on our part.</p>
+          </div>
+        </div>
+        
+        <!-- Reviews Tab -->
+        <div id="reviews" class="tab-content hidden">
+          <div class="mb-6">
+            <div class="flex items-center mb-4">
+              <div class="flex text-yellow-400 mr-3">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="text-lg font-medium">4.9 out of 5</span>
+            </div>
+            
+            <div class="space-y-2 mb-6">
+              <div class="flex items-center">
+                <span class="w-16 text-sm">5 stars</span>
+                <div class="w-full bg-gray-200 rounded-full h-2 mx-2">
+                  <div class="bg-yellow-400 h-2 rounded-full" style="width: 85%"></div>
+                </div>
+                <span class="w-12 text-sm text-right">85%</span>
+              </div>
+              <div class="flex items-center">
+                <span class="w-16 text-sm">4 stars</span>
+                <div class="w-full bg-gray-200 rounded-full h-2 mx-2">
+                  <div class="bg-yellow-400 h-2 rounded-full" style="width: 10%"></div>
+                </div>
+                <span class="w-12 text-sm text-right">10%</span>
+              </div>
+              <div class="flex items-center">
+                <span class="w-16 text-sm">3 stars</span>
+                <div class="w-full bg-gray-200 rounded-full h-2 mx-2">
+                  <div class="bg-yellow-400 h-2 rounded-full" style="width: 3%"></div>
+                </div>
+                <span class="w-12 text-sm text-right">3%</span>
+              </div>
+              <div class="flex items-center">
+                <span class="w-16 text-sm">2 stars</span>
+                <div class="w-full bg-gray-200 rounded-full h-2 mx-2">
+                  <div class="bg-yellow-400 h-2 rounded-full" style="width: 1%"></div>
+                </div>
+                <span class="w-12 text-sm text-right">1%</span>
+              </div>
+              <div class="flex items-center">
+                <span class="w-16 text-sm">1 star</span>
+                <div class="w-full bg-gray-200 rounded-full h-2 mx-2">
+                  <div class="bg-yellow-400 h-2 rounded-full" style="width: 1%"></div>
+                </div>
+                <span class="w-12 text-sm text-right">1%</span>
+              </div>
+            </div>
+            
+            <button class="bg-secondary text-white py-2 px-4 rounded-md font-medium hover:bg-secondary/90 transition">
+              Write a Review
+            </button>
+          </div>
+          
+          <!-- Sample Reviews -->
+          <div class="border-t border-gray-200 pt-6 space-y-6">
+            <!-- Review 1 -->
+            <div class="border-b border-gray-200 pb-6">
+              <div class="flex justify-between mb-2">
+                <h4 class="font-medium">Michael Chen</h4>
+                <span class="text-sm text-gray-500">2 weeks ago</span>
+              </div>
+              <div class="flex text-yellow-400 mb-2">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <h5 class="font-medium mb-2">Perfect fit and amazing quality</h5>
+              <p class="text-gray-700 mb-3">I've been looking for a high-quality hoodie for a while, and this one exceeds all expectations. The fabric is substantial without being too heavy, and the fit is perfect - not too baggy, not too slim. The zipper is smooth and feels like it will last forever. Definitely worth the price!</p>
+              <div class="flex items-center text-sm">
+                <span class="text-gray-500">Size: M | Color: Black</span>
+                <span class="mx-2">•</span>
+                <button class="text-secondary hover:underline">Helpful (12)</button>
+              </div>
+            </div>
+            
+            <!-- Review 2 -->
+            <div class="border-b border-gray-200 pb-6">
+              <div class="flex justify-between mb-2">
+                <h4 class="font-medium">Sarah Johnson</h4>
+                <span class="text-sm text-gray-500">1 month ago</span>
+              </div>
+              <div class="flex text-yellow-400 mb-2">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <h5 class="font-medium mb-2">My new favorite hoodie</h5>
+              <p class="text-gray-700 mb-3">This hoodie is incredibly comfortable and well-made. I love the hidden phone pocket - such a smart design feature! The burgundy color is rich and exactly as pictured. I've already received several compliments when wearing it. Will definitely be purchasing in more colors.</p>
+              <div class="flex items-center text-sm">
+                <span class="text-gray-500">Size: S | Color: Burgundy</span>
+                <span class="mx-2">•</span>
+                <button class="text-secondary hover:underline">Helpful (8)</button>
+              </div>
+            </div>
+            
+            <!-- Review 3 -->
+            <div>
+              <div class="flex justify-between mb-2">
+                <h4 class="font-medium">Alex Rodriguez</h4>
+                <span class="text-sm text-gray-500">2 months ago</span>
+              </div>
+              <div class="flex text-yellow-400 mb-2">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
+              <h5 class="font-medium mb-2">Great hoodie, runs slightly large</h5>
+              <p class="text-gray-700 mb-3">The quality of this hoodie is excellent - thick material, sturdy zipper, and nice details. My only issue is that it runs a bit large. I'm usually a medium but should have gone with a small. Otherwise, it's perfect and very warm for cold days. The navy color is versatile and goes with everything.</p>
+              <div class="flex items-center text-sm">
+                <span class="text-gray-500">Size: M | Color: Navy</span>
+                <span class="mx-2">•</span>
+                <button class="text-secondary hover:underline">Helpful (5)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Pair Well With Section -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-primary mb-6">Pair Well With</h2>
+      
+      <div class="relative">
+        <div class="pair-well-container overflow-x-auto flex space-x-4 pb-4">
+          <!-- Item 1 -->
+          <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/tshirt_white.avif" alt="Essential Tee" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="Essential Tee" data-price="29.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Essential Tee" data-price="29.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Essential Tee" data-price="29.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">Essential Tee</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$29.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="Essential Tee" data-price="29.99" data-image="assets/images/tshirt_white.avif">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Item 2 -->
+          <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/joggers_black.png" alt="Urban Joggers" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="Urban Joggers" data-price="49.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Urban Joggers" data-price="49.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Urban Joggers" data-price="49.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">Urban Joggers</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$49.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="Urban Joggers" data-price="49.99"data-image="assets/images/joggers_black.png">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Item 3 -->
+          <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/cap_black.png" alt="Urban Snapback Cap" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="Urban Snapback Cap" data-price="29.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Urban Snapback Cap" data-price="29.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Urban Snapback Cap" data-price="29.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">Urban Snapback Cap</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$29.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="Urban Snapback Cap" data-price="29.99"data-image="assets/images/cap_black.png">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Item 4 -->
+          <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/tote_black.png" alt="Urban Tote Bag" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="Urban Tote Bag" data-price="34.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Urban Tote Bag" data-price="34.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Urban Tote Bag" data-price="34.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">Urban Tote Bag</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$34.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="Urban Tote Bag" data-price="34.99"data-image="assets/images/tote_black">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/sneakers_main.avif" alt="White Sneakers" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="White Sneakers" data-price="134.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="White Sneakers" data-price="134.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="White Sneakers" data-price="134.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">White Sneakers</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$134.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="White Sneakers" data-price="134.99"data-image="assets/images/sneakers_main.avif">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div class="flex-shrink-0 w-64 group product-card">
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+              <div class="relative overflow-hidden product-image-container">
+                <img src="assets/images/beanie_black.png" alt="Knit Beanie" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+                <div class="absolute bottom-4 right-4">
+                  <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition add-to-cart-small" data-product="Knit Beanie" data-price="24.99">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Knit Beanie" data-price="24.99">Buy Now</button>
+                <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Knit Beanie" data-price="24.99">
+                  <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+                </button>
+              </div>
+              <div class="p-4">
+                <h3 class="font-medium text-primary mb-1">Knit Beanie</h3>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-700">$24.99</span>
+                  <button class="text-xs bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/90 transition add-to-cart-small" data-product="Knit Beanie" data-price="24.99"data-image="assets/images/beanie_black.png">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Scroll Indicators -->
+        <button class="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition hidden md:block pair-scroll-left">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-primary p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition hidden md:block pair-scroll-right">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+    
+  <!-- Product Bundle Suggestion -->
+    <section class="mt-16 bg-gray-100 rounded-lg p-6" id="bundle">
+      <h2 class="text-2xl font-bold text-primary mb-6">Buy Together And Save Big!!</h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="col-span-2">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Bundle Item 1 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="relative">
+                <img src="assets/images/hoodie-black.png" alt="Premium Zip Hoodie" class="w-full h-40 object-cover">
+                <div class="absolute top-2 left-2">
+                  <span class="bg-secondary text-white text-xs px-2 py-1 rounded-full">1</span>
+                </div>
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-primary text-sm">Premium Zip Hoodie</h3>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-gray-700 text-sm">$69.99</span>
+                  <span class="text-xs text-gray-500">Selected</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Bundle Item 2 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="relative">
+                <img src="assets/images/joggers_black.png" alt="Urban Joggers" class="w-full h-40 object-cover">
+                <div class="absolute top-2 left-2">
+                  <span class="bg-secondary text-white text-xs px-2 py-1 rounded-full">2</span>
+                </div>
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-primary text-sm">Urban Joggers</h3>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-gray-700 text-sm">$49.99</span>
+                  <label class="inline-flex items-center">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-secondary" checked>
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Bundle Item 3 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm">
+              <div class="relative">
+                <img src="assets/images/cap_black.png" alt="Urban Snapback Cap" class="w-full h-40 object-cover">
+                <div class="absolute top-2 left-2">
+                  <span class="bg-secondary text-white text-xs px-2 py-1 rounded-full">3</span>
+                </div>
+              </div>
+              <div class="p-3">
+                <h3 class="font-medium text-primary text-sm">Urban Snapback Cap</h3>
+                <div class="flex justify-between items-center mt-1">
+                  <span class="text-gray-700 text-sm">$29.99</span>
+                  <label class="inline-flex items-center">
+                    <input type="checkbox" class="form-checkbox h-4 w-4 text-secondary" checked>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <h3 class="font-bold text-lg mb-4">Urban Essentials Bundle</h3>
+          
+          <div class="space-y-3 mb-4">
+            <div class="flex justify-between">
+              <span class="text-gray-700">Premium Zip Hoodie</span>
+              <span class="text-gray-700">$69.99</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-700">Urban Joggers</span>
+              <span class="text-gray-700">$49.99</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-700">Urban Snapback Cap</span>
+              <span class="text-gray-700">$29.99</span>
+            </div>
+            <div class="border-t border-gray-200 pt-3 flex justify-between">
+              <span class="text-gray-700">Subtotal</span>
+              <span class="text-gray-700">$149.97</span>
+            </div>
+            <div class="flex justify-between font-medium">
+              <span class="text-green-600">Bundle Discount</span>
+              <span class="text-green-600">-$30.00</span>
+            </div>
+            <div class="border-t border-gray-200 pt-3 flex justify-between font-bold">
+              <span>Bundle Price</span>
+              <span>$119.97</span>
+            </div>
+          </div>
+          
+          <div class="bg-green-100 text-green-800 p-2 rounded-md text-center text-sm mb-4">
+            Save $30.00 (20% Off)
+          </div>
+          
+          <button id="addBundleBtn" class="w-full bg-secondary text-white py-3 rounded-md font-medium hover:bg-secondary/90 transition">
+            Add Bundle to Cart
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    
+    <!-- Related Products -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-primary mb-6">You May Also Like</h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="group product-card">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+            <div class="relative overflow-hidden product-image-container">
+              <img src="assets/images/crewneck_gray.png" alt="Classic Crewneck Sweatshirt" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute top-4 left-4">
+                <span class="bg-secondary text-white text-xs px-2 py-1 rounded">New</span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Classic Crewneck Sweatshirt" data-price="59.99">Buy Now</button>
+              <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Classic Crewneck Sweatshirt" data-price="59.99">
+                <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <h3 class="font-medium text-primary mb-1">Classic Crewneck Sweatshirt</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700">$59.99</span>
+            <div class="flex text-yellow-400 text-xs">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+              <span class="text-gray-500 ml-1">(42)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="group product-card">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+            <div class="relative overflow-hidden product-image-container">
+              <img src="assets/images/pullover_navy.png" alt="Pullover Hoodie" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute top-4 left-4">
+                <span class="bg-accent text-white text-xs px-2 py-1 rounded">Best Seller</span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Pullover Hoodie" data-price="64.99">Buy Now</button>
+              <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Pullover Hoodie" data-price="64.99">
+                <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <h3 class="font-medium text-primary mb-1">Pullover Hoodie</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700">$64.99</span>
+            <div class="flex text-yellow-400 text-xs">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <span class="text-gray-500 ml-1">(78)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="group product-card">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+            <div class="relative overflow-hidden product-image-container">
+              <img src="assets/images/track_jacket_black.png" alt="Track Jacket" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute bottom-4 right-4">
+                <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Track Jacket" data-price="74.99">Buy Now</button>
+              <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Track Jacket" data-price="74.99">
+                <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <h3 class="font-medium text-primary mb-1">Track Jacket</h3>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700">$74.99</span>
+            <div class="flex text-yellow-400 text-xs">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <span class="text-gray-500 ml-1">(36)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="group product-card">
+          <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+            <div class="relative overflow-hidden product-image-container">
+              <img src="assets/images/bomber_jacket_green.png" alt="Urban Bomber Jacket" class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
+              <div class="absolute top-4 left-4">
+                <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">Sale</span>
+              </div>
+              <div class="absolute bottom-4 right-4">
+                <button class="bg-white text-primary p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
+              <button class="buy-now-btn bg-black text-white py-2 px-4 rounded-md font-medium hover:bg-gray-800 transition" data-product="Urban Bomber Jacket" data-price="89.99">Buy Now</button>
+              <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md hover:bg-red-50 transition wishlist-product-btn" data-product="Urban Bomber Jacket" data-price="89.99">
+                <i class="fa-regular fa-heart wishlist-heart text-gray-700"></i>
+              </button>
+            </div>
+          </div>
+          <h3 class="font-medium text-primary mb-1">Urban Bomber Jacket</h3>
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="text-gray-700">$89.99</span>
+              <span class="text-gray-500 line-through text-sm ml-2">$119.99</span>
+            </div>
+            <div class="flex text-yellow-400 text-xs">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+              <span class="text-gray-500 ml-1">(52)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Size Chart Modal -->
+  <div id="sizeChartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-lg font-bold">Size Chart</h3>
+        <button id="closeSizeChart" class="text-gray-500 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <div class="p-6">
+        <div class="mb-6">
+          <p class="text-gray-700 mb-4">To find your perfect fit, please refer to the size chart below. Measurements are in inches.</p>
+          <div class="flex space-x-4 mb-4">
+            <button class="size-unit-btn active" data-unit="inches">Inches</button>
+            <button class="size-unit-btn" data-unit="cm">Centimeters</button>
+          </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="min-w-full border border-gray-200">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b text-left">Size</th>
+                <th class="py-2 px-4 border-b text-left">Chest</th>
+                <th class="py-2 px-4 border-b text-left">Waist</th>
+                <th class="py-2 px-4 border-b text-left">Hip</th>
+                <th class="py-2 px-4 border-b text-left">Sleeve Length</th>
+              </tr>
+            </thead>
+            <tbody id="sizeChartBody">
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">XS</td>
+                <td class="py-2 px-4 border-b">34-36</td>
+                <td class="py-2 px-4 border-b">28-30</td>
+                <td class="py-2 px-4 border-b">34-36</td>
+                <td class="py-2 px-4 border-b">32</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b font-medium">S</td>
+                <td class="py-2 px-4 border-b">36-38</td>
+                <td class="py-2 px-4 border-b">30-32</td>
+                <td class="py-2 px-4 border-b">36-38</td>
+                <td class="py-2 px-4 border-b">33</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">M</td>
+                <td class="py-2 px-4 border-b">38-40</td>
+                <td class="py-2 px-4 border-b">32-34</td>
+                <td class="py-2 px-4 border-b">38-40</td>
+                <td class="py-2 px-4 border-b">34</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b font-medium">L</td>
+                <td class="py-2 px-4 border-b">40-42</td>
+                <td class="py-2 px-4 border-b">34-36</td>
+                <td class="py-2 px-4 border-b">40-42</td>
+                <td class="py-2 px-4 border-b">35</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">XL</td>
+                <td class="py-2 px-4 border-b">42-44</td>
+                <td class="py-2 px-4 border-b">36-38</td>
+                <td class="py-2 px-4 border-b">42-44</td>
+                <td class="py-2 px-4 border-b">36</td>
+              </tr>
+              <tr class="bg-gray-50">
+                <td class="py-2 px-4 border-b font-medium">XXL</td>
+                <td class="py-2 px-4 border-b">44-46</td>
+                <td class="py-2 px-4 border-b">38-40</td>
+                <td class="py-2 px-4 border-b">44-46</td>
+                <td class="py-2 px-4 border-b">37</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="mt-6">
+          <h4 class="font-medium mb-2">How to Measure</h4>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><strong>Chest:</strong> Measure around the fullest part of your chest, keeping the tape horizontal.</li>
+            <li><strong>Waist:</strong> Measure around your natural waistline, keeping the tape comfortably loose.</li>
+            <li><strong>Hip:</strong> Measure around the fullest part of your hips.</li>
+            <li><strong>Sleeve Length:</strong> Measure from the center back of your neck, across your shoulder and down to your wrist.</li>
+          </ul>
+        </div>
+        
+        <div class="mt-6">
+          <p class="text-gray-700">If you're between sizes, we recommend sizing up for a more comfortable fit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Compare Colors Modal -->
+  <div id="compareColorsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-lg font-bold">Compare Colors</h3>
+        <button id="closeCompareColors" class="text-gray-500 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <div class="p-6">
+        <p class="text-gray-700 mb-4">Select colors to compare side by side. Click on a color to add or remove it from comparison.</p>
+        
+        <div class="flex flex-wrap gap-3 mb-6" id="colorSelectionContainer">
+          <button class="color-compare-btn active" data-color="Black" data-image-prefix="hoodie-black" style="background-color: #111827;"></button>
+          <button class="color-compare-btn" data-color="Navy" data-image-prefix="hoodie-navy" style="background-color: #1e3a8a;"></button>
+          <button class="color-compare-btn" data-color="Gray" data-image-prefix="hoodie-gray" style="background-color: #6b7280;"></button>
+          <button class="color-compare-btn" data-color="Burgundy" data-image-prefix="hoodie-burgundy" style="background-color: #9f1239;"></button>
+          <button class="color-compare-btn" data-color="Forest Green" data-image-prefix="hoodie-green" style="background-color: #14532d;"></button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="colorComparisonContainer">
+          <!-- Comparison Cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="toast-notification">
+    <div class="flex items-start">
+      <div class="flex-shrink- pt-0.5">
+        <i class="fa-solid fa-circle-check text-green-500 text-xl"></i>
+      </div>
+      <div class="ml-3 w-0 flex-1">
+        <p class="text-sm font-medium text-gray-900" id="toastTitle">Item added to cart</p>
+        <p class="mt-1 text-sm text-gray-500" id="toastMessage">Premium Zip Hoodie has been added to your cart.</p>
+        <div class="mt-3 flex space-x-3">
+          <button id="toastViewCart" class="bg-secondary text-white text-xs px-3 py-2 rounded-md font-medium hover:bg-secondary/90 transition">
+            View Cart
+          </button>
+          <button id="toastCheckout" class="bg-black text-white text-xs px-3 py-2 rounded-md font-medium hover:bg-gray-800 transition">
+            Checkout Now
+          </button>
+        </div>
+      </div>
+      <div class="ml-4 flex-shrink-0 flex">
+        <button id="closeToast" class="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="checkout-modal">
+    <div class="checkout-content">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="text-lg font-bold">Checkout</h3>
+        <button id="closeCheckout" class="text-gray-500 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      
+      <div class="p-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Cart Items (Left Column) -->
+          <div class="lg:col-span-2">
+            <h4 class="text-lg font-medium mb-4">Your Cart</h4>
+            <div id="checkoutItems" class="space-y-4">
+              <!-- Cart items will be inserted here by JavaScript -->
+            </div>
+          </div>
+          
+          <!-- Order Summary (Right Column) -->
+          <div>
+            <div class="bg-gray-50 rounded-lg p-6">
+              <h4 class="text-lg font-medium mb-4">Order Summary</h4>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Subtotal</span>
+                  <span id="subtotalAmount" class="font-medium">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Shipping</span>
+                  <span id="shippingAmount" class="font-medium">$5.99</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Tax (8%)</span>
+                  <span id="taxAmount" class="font-medium">$0.00</span>
+                </div>
+                <div class="border-t border-gray-200 pt-3 flex justify-between font-bold">
+                  <span>Total</span>
+                  <span id="totalAmount" class="text-lg">$0.00</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Shipping Information -->
+            <div class="mt-6">
+              <h4 class="text-lg font-medium mb-4">Shipping Information</h4>
+              <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                    <input type="text" id="firstName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <input type="text" id="lastName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+                <div>
+                  <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                  <input type="text" id="address" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                    <input type="text" id="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="zipCode" class="block text-sm font-medium text-gray-700">ZIP Code</label>
+                    <input type="text" id="zipCode" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" id="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+              </div>
+            </div>
+            
+            <!-- Payment Information -->
+            <div class="mt-6">
+              <h4 class="text-lg font-medium mb-4">Payment Information</h4>
+              <div class="space-y-4">
+                <div>
+                  <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
+                  <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label for="expDate" class="block text-sm font-medium text-gray-700">Expiration Date</label>
+                    <input type="text" id="expDate" placeholder="MM/YY" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                  <div>
+                    <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-secondary focus:border-secondary">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button id="confirmOrderBtn" class="w-full bg-secondary text-white py-3 rounded-md font-medium hover:bg-secondary/90 transition mt-6">
+              Confirm Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Success Modal -->
+  <div id="successModal" class="success-modal">
+    <div class="success-content">
+      <div class="success-icon">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-2xl font-bold mb-2">Order Confirmed!</h3>
+      <p class="text-gray-600 mb-6">Thank you for your purchase. Your order has been confirmed and will be shipped soon.</p>
+      <button id="backToShopBtn" class="bg-secondary text-white py-3 px-6 rounded-md font-medium hover:bg-secondary/90 transition">
+        Back to Shop
+      </button>
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="wishlist-overlay" id="wishlistOverlay"></div>
+  <div class="wishlist-modal" id="wishlistModal">
+    <div class="p-4 border-b flex justify-between items-center">
+      <h3 class="text-lg font-bold">Your Wishlist</h3>
+      <button id="closeWishlist" class="text-gray-500 hover:text-gray-700">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+    </div>
+    
+    <div class="p-6">
+      <div id="wishlistItems" class="space-y-4">
+        <!-- Wishlist items will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white mt-16 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <!-- Company Info -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">URBAN THREADS</h3>
+          <p class="text-gray-400 mb-4">Premium streetwear for the modern urban lifestyle.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Shop Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Shop</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">All Products</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">T-Shirts</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Hoodies</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Accessories</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Bundles</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Gift Cards</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Sustainability</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Press</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Affiliates</a></li>
+          </ul>
+        </div>
+        
+        <!-- Support Links -->
+        <div>
+          <h4 class="text-lg font-medium mb-4">Support</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Shipping & Returns</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Size Guide</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2025 Urban Threads. All rights reserved.</p>
+          <div class="flex items-center space-x-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Visa" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png" alt="Mastercard" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196565.png" alt="PayPal" class="h-8 w-auto">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968220.png" alt="Apple Pay" class="h-8 w-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Initialize all functionality
+      initThumbnailGallery();
+      initColorSwatches();
+      initSizeSelection();
+      initQuantityControls();
+      initTabs();
+      initSizeChart();
+      initCompareColors();
+      initScrollButtons();
+      
+      // Initialize new functionality
+      initCart();
+      initWishlist();
+      initToastNotification();
+      initCheckoutModal();
+      initSuccessModal();
+      initBuyNowButtons();
+      initMobileMenu();
+      initWishlistModal();
+    });
+
+    // Mobile Menu
+    function initMobileMenu() {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const closeMobileMenu = document.getElementById('close-mobile-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+      
+      // Open mobile menu
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.add('show');
+        mobileMenuOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+      
+      // Close mobile menu
+      closeMobileMenu.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        mobileMenuOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on overlay click
+      mobileMenuOverlay.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        mobileMenuOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on menu link click (for anchor links)
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('show');
+          mobileMenuOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('show')) {
+          mobileMenu.classList.remove('show');
+          mobileMenuOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Wishlist Modal
+    function initWishlistModal() {
+      const wishlistIcon = document.getElementById('wishlist-icon');
+      const wishlistModal = document.querySelector('.wishlist-modal');
+      const wishlistOverlay = document.getElementById('wishlistOverlay');
+      const closeWishlist = document.getElementById('closeWishlist');
+      
+      // Open wishlist modal
+      wishlistIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        openWishlistModal();
+      });
+      
+      // Close wishlist modal
+      closeWishlist.addEventListener('click', function() {
+        wishlistModal.classList.remove('show');
+        wishlistOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on overlay click
+      wishlistOverlay.addEventListener('click', function() {
+        wishlistModal.classList.remove('show');
+        wishlistOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && wishlistModal.classList.contains('show')) {
+          wishlistModal.classList.remove('show');
+          wishlistOverlay.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Open wishlist modal
+    function openWishlistModal() {
+      const wishlistModal = document.querySelector('.wishlist-modal');
+      const wishlistOverlay = document.getElementById('wishlistOverlay');
+      const wishlistItems = document.getElementById('wishlistItems');
+      
+      // Get wishlist from localStorage
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      
+      // Clear wishlist items
+      wishlistItems.innerHTML = '';
+      
+      // Add wishlist items
+      if (wishlist.length === 0) {
+        wishlistItems.innerHTML = '<p class="text-gray-500">Your wishlist is empty.</p>';
+      } else {
+        wishlist.forEach((item, index) => {
+          const itemElement = document.createElement('div');
+          itemElement.className = 'flex items-center bg-white p-4 rounded-lg shadow-sm mb-4';
+          itemElement.innerHTML = `
+            <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-medium">${item.name}</h4>
+              <p class="text-sm text-gray-500">Color: ${item.color}</p>
+              <div class="flex justify-between mt-2">
+                <span class="font-medium">$${item.price.toFixed(2)}</span>
+                <div class="flex space-x-2">
+                  <button class="bg-secondary text-white px-3 py-1 rounded text-sm hover:bg-secondary/90 transition add-to-cart-wishlist" data-index="${index}">
+                    Add to Cart
+                  </button>
+                  <button class="text-red-500 hover:text-red-700 transition remove-wishlist" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          wishlistItems.appendChild(itemElement);
+        });
+        
+        // Add event listeners to add to cart and remove buttons
+        document.querySelectorAll('.add-to-cart-wishlist').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const item = wishlist[index];
+            
+            // Add to cart
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({
+              name: item.name,
+              price: item.price,
+              color: item.color,
+              size: 'M', // Default size
+              quantity: 1,
+              image: item.image
+            });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show toast notification
+            showToast(
+              'Item added to cart',
+              `${item.name} has been added to your cart.`
+            );
+          });
+        });
+        
+        document.querySelectorAll('.remove-wishlist').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            openWishlistModal(); // Refresh the modal
+            updateWishlistCount();
+          });
+        });
+      }
+      
+      // Show wishlist modal
+      wishlistModal.classList.add('show');
+      wishlistOverlay.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+
+    // Thumbnail Gallery
+    function initThumbnailGallery() {
+      const thumbnailsContainer = document.querySelector('.thumbnails-container');
+      const mainImage = document.getElementById('mainImage');
+      const imageSuffixes = ["", "-back", "-side", "-detail", "-model"];
+      
+      // Set initial thumbnails for black color
+      setThumbnails("hoodie-black");
+      
+      // Function to update thumbnails based on color
+      function setThumbnails(colorPrefix) {
+        thumbnailsContainer.innerHTML = "";
+        imageSuffixes.forEach((suffix, index) => {
+          const fullPath = `assets/images/${colorPrefix}${suffix}.png`;
+          const button = document.createElement("button");
+          button.className = `thumbnail-btn${index === 0 ? " active" : ""}`;
+          button.dataset.image = fullPath;
+
+          const img = document.createElement("img");
+          img.src = fullPath;
+          img.alt = `Product ${suffix || "front"}`;
+          img.className = "w-20 h-20 object-cover rounded-md";
+          button.appendChild(img);
+
+          button.addEventListener("click", () => {
+            document.querySelectorAll(".thumbnail-btn").forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+            mainImage.src = fullPath;
+          });
+
+          thumbnailsContainer.appendChild(button);
+        });
+        
+        // Set main image to the first thumbnail
+        mainImage.src = `assets/images/${colorPrefix}.png`;
+      }
+      
+      // Make the setThumbnails function globally available
+      window.setThumbnails = setThumbnails;
+    }
+
+    // Color Swatches
+    function initColorSwatches() {
+      const colorSwatches = document.querySelectorAll('.color-swatch');
+      const selectedColorText = document.getElementById('selectedColor');
+      
+      colorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          // Update active state
+          colorSwatches.forEach(s => s.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update selected color text
+          const colorName = this.getAttribute('data-color');
+          const imagePrefix = this.getAttribute('data-image-prefix');
+          selectedColorText.textContent = colorName;
+          
+          // Update thumbnails and main image
+          window.setThumbnails(imagePrefix);
+          
+          // Save to localStorage
+          localStorage.setItem('selectedColor', colorName);
+        });
+      });
+      
+      // Load saved color preference
+      const savedColor = localStorage.getItem('selectedColor');
+      if (savedColor) {
+        const colorSwatch = document.querySelector(`.color-swatch[data-color="${savedColor}"]`);
+        if (colorSwatch) {
+          colorSwatch.click();
+        }
+      }
+    }
+
+    // Size Selection
+    function initSizeSelection() {
+      const sizeButtons = document.querySelectorAll('.size-btn');
+      const selectedSizeText = document.getElementById('selectedSize');
+      
+      sizeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          if (this.classList.contains('out-of-stock')) {
+            return; // Don't allow selecting out of stock sizes
+          }
+          
+          // Update active state
+          sizeButtons.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update selected size text
+          const sizeName = this.getAttribute('data-size');
+          selectedSizeText.textContent = sizeName;
+          
+          // Save to localStorage
+          localStorage.setItem('selectedSize', sizeName);
+        });
+      });
+      
+      // Load saved size preference
+      const savedSize = localStorage.getItem('selectedSize');
+      if (savedSize) {
+        const sizeButton = document.querySelector(`.size-btn[data-size="${savedSize}"]`);
+        if (sizeButton) {
+          sizeButton.click();
+        }
+      }
+    }
+
+    // Quantity Controls
+    function initQuantityControls() {
+      const decreaseBtn = document.getElementById('decreaseQuantity');
+      const increaseBtn = document.getElementById('increaseQuantity');
+      const quantityInput = document.getElementById('quantity');
+      
+      decreaseBtn.addEventListener('click', function() {
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
+      
+      increaseBtn.addEventListener('click', function() {
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue < 10) {
+          quantityInput.value = currentValue + 1;
+        }
+      });
+      
+      quantityInput.addEventListener('change', function() {
+        let value = parseInt(this.value);
+        
+        if (isNaN(value) || value < 1) {
+          value = 1;
+        } else if (value > 10) {
+          value = 10;
+        }
+        
+        this.value = value;
+      });
+    }
+
+    // Tabs
+    function initTabs() {
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const tabId = this.getAttribute('data-tab');
+          
+          // Update active tab button
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show the selected tab content
+          tabContents.forEach(content => {
+            if (content.id === tabId) {
+              content.classList.remove('hidden');
+              content.classList.add('active');
+            } else {
+              content.classList.add('hidden');
+              content.classList.remove('active');
+            }
+          });
+        });
+      });
+    }
+
+    // Size Chart Modal
+    function initSizeChart() {
+      const sizeChartBtn = document.getElementById('sizeChartBtn');
+      const sizeChartModal = document.getElementById('sizeChartModal');
+      const closeSizeChart = document.getElementById('closeSizeChart');
+      const sizeUnitButtons = document.querySelectorAll('.size-unit-btn');
+      const sizeChartBody = document.getElementById('sizeChartBody');
+      
+      // Size data in inches and centimeters
+      const sizeData = {
+        inches: [
+          { size: 'XS', chest: '34-36', waist: '28-30', hip: '34-36', sleeve: '32' },
+          { size: 'S', chest: '36-38', waist: '30-32', hip: '36-38', sleeve: '33' },
+          { size: 'M', chest: '38-40', waist: '32-34', hip: '38-40', sleeve: '34' },
+          { size: 'L', chest: '40-42', waist: '34-36', hip: '40-42', sleeve: '35' },
+          { size: 'XL', chest: '42-44', waist: '36-38', hip: '42-44', sleeve: '36' },
+          { size: 'XXL', chest: '44-46', waist: '38-40', hip: '44-46', sleeve: '37' }
+        ],
+        cm: [
+          { size: 'XS', chest: '86-91', waist: '71-76', hip: '86-91', sleeve: '81' },
+          { size: 'S', chest: '91-97', waist: '76-81', hip: '91-97', sleeve: '84' },
+          { size: 'M', chest: '97-102', waist: '81-86', hip: '97-102', sleeve: '86' },
+          { size: 'L', chest: '102-107', waist: '86-91', hip: '102-107', sleeve: '89' },
+          { size: 'XL', chest: '107-112', waist: '91-97', hip: '107-112', sleeve: '91' },
+          { size: 'XXL', chest: '112-117', waist: '97-102', hip: '112-117', sleeve: '94' }
+        ]
+      };
+      
+      // Open modal
+      sizeChartBtn.addEventListener('click', function() {
+        sizeChartModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      });
+      
+      // Close modal
+      closeSizeChart.addEventListener('click', function() {
+        sizeChartModal.classList.add('hidden');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on outside click
+      sizeChartModal.addEventListener('click', function(e) {
+        if (e.target === sizeChartModal) {
+          sizeChartModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !sizeChartModal.classList.contains('hidden')) {
+          sizeChartModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Toggle between inches and centimeters
+      sizeUnitButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const unit = this.getAttribute('data-unit');
+          
+          // Update active button
+          sizeUnitButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update size chart data
+          updateSizeChart(unit);
+        });
+      });
+      
+      // Function to update size chart based on selected unit
+      function updateSizeChart(unit) {
+        const data = sizeData[unit];
+        let html = '';
+        
+        data.forEach((row, index) => {
+          const bgClass = index % 2 === 1 ? 'bg-gray-50' : '';
+          html += `
+            <tr class="${bgClass}">
+              <td class="py-2 px-4 border-b font-medium">${row.size}</td>
+              <td class="py-2 px-4 border-b">${row.chest}</td>
+              <td class="py-2 px-4 border-b">${row.waist}</td>
+              <td class="py-2 px-4 border-b">${row.hip}</td>
+              <td class="py-2 px-4 border-b">${row.sleeve}</td>
+            </tr>
+          `;
+        });
+        
+        sizeChartBody.innerHTML = html;
+      }
+    }
+
+    // Compare Colors Modal
+    function initCompareColors() {
+      const compareColorsBtn = document.getElementById('compareColorsBtn');
+      const compareColorsModal = document.getElementById('compareColorsModal');
+      const closeCompareColors = document.getElementById('closeCompareColors');
+      const colorCompareBtns = document.querySelectorAll('.color-compare-btn');
+      const comparisonContainer = document.getElementById('colorComparisonContainer');
+      const imageSuffixes = ["", "-back", "-side", "-detail", "-model"];
+      
+      // Selected colors for comparison (Map to store color name and image prefix)
+      const selectedColors = new Map();
+      
+      // Color hex codes for display
+      const colorHexCodes = {
+        "hoodie-black": "#111827",
+        "hoodie-navy": "#1e3a8a",
+        "hoodie-gray": "#6b7280",
+        "hoodie-burgundy": "#9f1239",
+        "hoodie-green": "#14532d"
+      };
+      
+      // Open modal
+      compareColorsBtn.addEventListener('click', function() {
+        compareColorsModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        
+        // Reset selected colors to match the current product color
+        const currentColor = document.getElementById('selectedColor').textContent;
+        const currentPrefix = document.querySelector(`.color-swatch[data-color="${currentColor}"]`).getAttribute('data-image-prefix');
+        
+        // Clear previous selections
+        selectedColors.clear();
+        
+        // Add current color
+        selectedColors.set(currentColor, currentPrefix);
+        
+        // Update UI
+        updateColorButtons();
+        updateComparisonView();
+      });
+      
+      // Close modal
+      closeCompareColors.addEventListener('click', function() {
+        compareColorsModal.classList.add('hidden');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on outside click
+      compareColorsModal.addEventListener('click', function(e) {
+        if (e.target === compareColorsModal) {
+          compareColorsModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !compareColorsModal.classList.contains('hidden')) {
+          compareColorsModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Toggle color selection
+      colorCompareBtns.forEach(button => {
+        button.addEventListener('click', function() {
+          const color = this.getAttribute('data-color');
+          const prefix = this.getAttribute('data-image-prefix');
+          
+          if (selectedColors.has(color)) {
+            // Remove color if already selected (but don't remove the last color)
+            if (selectedColors.size > 1) {
+              selectedColors.delete(color);
+            }
+          } else {
+            // Add color if not already selected (limit to 3 colors)
+            if (selectedColors.size < 3) {
+              selectedColors.set(color, prefix);
+            } else {
+              alert('You can compare up to 3 colors at a time.');
+            }
+          }
+          
+          // Update UI
+          updateColorButtons();
+          updateComparisonView();
+        });
+      });
+      
+      // Update color buttons active state
+      function updateColorButtons() {
+        colorCompareBtns.forEach(button => {
+          const color = button.getAttribute('data-color');
+          if (selectedColors.has(color)) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+      }
+      
+      // Update comparison view
+      function updateComparisonView() {
+        comparisonContainer.innerHTML = "";
+        
+        selectedColors.forEach((prefix, color) => {
+          const card = document.createElement("div");
+          card.className = "color-comparison-item";
+          card.dataset.color = color;
+          
+          // Create card HTML
+          card.innerHTML = `
+            <div class="bg-white rounded-lg overflow-hidden border border-gray-200">
+              <img src="assets/images/${prefix}.png" alt="${color}" class="w-full h-48 object-cover main-compare-img cursor-pointer" data-color="${color}" data-prefix="${prefix}">
+              <div class="p-2 flex flex-wrap gap-2 justify-center border-t">
+                ${imageSuffixes.map((suffix, index) => `
+                  <button class="compare-thumbnail w-16 h-16 rounded-md overflow-hidden border border-gray-300 ${index === 0 ? 'active' : ''}" 
+                          data-image="assets/images/${prefix}${suffix}.png" 
+                          data-color="${color}" 
+                          data-index="${index}">
+                    <img src="assets/images/${prefix}${suffix}.png" alt="${color} ${suffix || 'front'}" class="w-full h-full object-cover">
+                  </button>
+                `).join('')}
+              </div>
+              <div class="p-3 border-t">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <span class="w-4 h-4 rounded-full mr-2" style="background-color: ${colorHexCodes[prefix]};"></span>
+                    <span class="font-medium">${color}</span>
+                  </div>
+                  <button class="text-red-500 hover:text-red-700 remove-color-btn" data-color="${color}">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          comparisonContainer.appendChild(card);
+        });
+        
+        // Add event listeners to thumbnails
+        document.querySelectorAll('.compare-thumbnail').forEach(thumb => {
+          thumb.addEventListener('click', function() {
+            const color = this.dataset.color;
+            const imageSrc = this.dataset.image;
+            
+            // Update active state for this color's thumbnails
+            document.querySelectorAll(`.compare-thumbnail[data-color="${color}"]`).forEach(t => {
+              t.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Update main image
+            const mainImg = document.querySelector(`.main-compare-img[data-color="${color}"]`);
+            mainImg.src = imageSrc;
+          });
+        });
+        
+        // Add event listeners to main images (to select color)
+        document.querySelectorAll('.main-compare-img').forEach(img => {
+          img.addEventListener('click', function() {
+            const color = this.dataset.color;
+            const prefix = this.dataset.prefix;
+            
+            // Find and click the corresponding color swatch
+            const colorSwatch = document.querySelector(`.color-swatch[data-color="${color}"]`);
+            if (colorSwatch) {
+              // Close the modal
+              compareColorsModal.classList.add('hidden');
+              document.body.style.overflow = '';
+              
+              // Select the color
+              colorSwatch.click();
+            }
+          });
+        });
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-color-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const color = this.dataset.color;
+            
+            // Don't remove if it's the last color
+            if (selectedColors.size > 1) {
+              selectedColors.delete(color);
+              
+              // Update UI
+              updateColorButtons();
+              updateComparisonView();
+            }
+          });
+        });
+      }
+    }
+
+    // Scroll Buttons for Thumbnails and Pair Well With
+    function initScrollButtons() {
+      // Thumbnail scroll
+      const thumbnailContainer = document.querySelector('.thumbnails-container');
+      const thumbnailScrollLeft = document.querySelector('.thumbnail-scroll-left');
+      const thumbnailScrollRight = document.querySelector('.thumbnail-scroll-right');
+      
+      if (thumbnailScrollLeft && thumbnailScrollRight) {
+        thumbnailScrollLeft.addEventListener('click', function() {
+          thumbnailContainer.scrollBy({ left: -100, behavior: 'smooth' });
+        });
+        
+        thumbnailScrollRight.addEventListener('click', function() {
+          thumbnailContainer.scrollBy({ left: 100, behavior: 'smooth' });
+        });
+      }
+      
+      // Pair Well With scroll
+      const pairWellContainer = document.querySelector('.pair-well-container');
+      const pairScrollLeft = document.querySelector('.pair-scroll-left');
+      const pairScrollRight = document.querySelector('.pair-scroll-right');
+      
+      if (pairScrollLeft && pairScrollRight) {
+        pairScrollLeft.addEventListener('click', function() {
+          pairWellContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        
+        pairScrollRight.addEventListener('click', function() {
+          pairWellContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+      }
+    }
+    
+    // Cart Functionality
+    function initCart() {
+      // Initialize cart from localStorage or create empty cart
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      updateCartCount();
+      
+      // Add to Cart Button
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', function() {
+          const productName = "Premium Zip Hoodie";
+          const productPrice = 69.99;
+          const productColor = document.getElementById('selectedColor').textContent;
+          const productSize = document.getElementById('selectedSize').textContent;
+          const productQuantity = parseInt(document.getElementById('quantity').value);
+          const productImage = document.getElementById('mainImage').src;
+          
+          // Validate size selection
+          if (productSize === 'Select Size') {
+            alert('Please select a size before adding to cart.');
+            return;
+          }
+          
+          // Check if product already exists in cart
+          const existingProductIndex = cart.findIndex(item => 
+            item.name === productName && 
+            item.color === productColor && 
+            item.size === productSize
+          );
+          
+          if (existingProductIndex !== -1) {
+            // Update quantity if product already exists
+            cart[existingProductIndex].quantity += productQuantity;
+          } else {
+            // Add new product to cart
+            cart.push({
+              name: productName,
+              price: productPrice,
+              color: productColor,
+              size: productSize,
+              quantity: productQuantity,
+              image: productImage
+            });
+          }
+          
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Add animation to button
+          addToCartBtn.classList.add('pulse');
+          setTimeout(() => {
+            addToCartBtn.classList.remove('pulse');
+          }, 500);
+          
+          // Show toast notification
+          showToast(
+            'Item added to cart', 
+            `${productName} - ${productColor} (${productSize}) has been added to your cart.`
+          );
+        });
+      }
+      
+      // Add to Cart Small Buttons (for related products)
+      const addToCartSmallBtns = document.querySelectorAll('.add-to-cart-small');
+      addToCartSmallBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const productName = this.getAttribute('data-product');
+          const productPrice = parseFloat(this.getAttribute('data-price'));
+          const productImage = this.getAttribute('data-image')
+          // Add product to cart
+          cart.push({
+            name: productName,
+            price: productPrice,
+            color: "Default",
+            size: "M", // Default size
+            quantity: 1,
+            image: productImage
+          });
+          
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Add animation to button
+          this.classList.add('pulse');
+          setTimeout(() => {
+            this.classList.remove('pulse');
+          }, 500);
+          
+          // Show toast notification
+          showToast(
+            'Item added to cart', 
+            `${productName} has been added to your cart.`
+          );
+        });
+      });
+      
+      // Add Bundle to Cart
+      const addBundleBtn = document.getElementById('addBundleBtn');
+      if (addBundleBtn) {
+        addBundleBtn.addEventListener('click', function() {
+          // Add bundle items to cart
+          const bundleItems = [
+            {
+              name: "Premium Zip Hoodie",
+              price: 69.99,
+              color: document.getElementById('selectedColor').textContent,
+              size: "M", // Default size
+              quantity: 1,
+              image: "assets/images/hoodie-black.png"
+            },
+            {
+              name: "Urban Joggers",
+              price: 49.99,
+              color: "Black",
+              size: "M", // Default size
+              quantity: 1,
+              image: "assets/images/joggers_black.png"
+            },
+            {
+              name: "Urban Snapback Cap",
+              price: 29.99,
+              color: "Black",
+              size: "One Size",
+              quantity: 1,
+              image: "assets/images/cap_black.png"
+            }
+          ];
+          
+          // Add bundle items to cart
+          cart = [...cart, ...bundleItems];
+          
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update cart count
+          updateCartCount();
+          
+          // Add animation to button
+          addBundleBtn.classList.add('pulse');
+          setTimeout(() => {
+            addBundleBtn.classList.remove('pulse');
+          }, 500);
+          
+          // Show toast notification
+          showToast(
+            'Bundle added to cart', 
+            'Urban Essentials Bundle has been added to your cart.'
+          );
+        });
+      }
+      
+      // Update cart count
+      function updateCartCount() {
+        const cartBadge = document.querySelector('.cart-badge');
+        if (cartBadge) {
+          const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+          cartBadge.textContent = totalItems;
+          
+          // Add animation to cart badge
+          cartBadge.classList.add('pulse');
+          setTimeout(() => {
+            cartBadge.classList.remove('pulse');
+          }, 500);
+        }
+      }
+      
+      // Cart icon click
+      const cartIcon = document.getElementById('cart-icon');
+      if (cartIcon) {
+        cartIcon.addEventListener('click', function(e) {
+          e.preventDefault();
+          openCheckoutModal();
+        });
+      }
+    }
+    
+    // Wishlist Functionality
+    function initWishlist() {
+      // Initialize wishlist from localStorage or create empty wishlist
+      let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      updateWishlistCount();
+      updateWishlistButtons();
+      
+      // Add to Wishlist Button
+      const addToWishlistBtn = document.getElementById('addToWishlistBtn');
+      if (addToWishlistBtn) {
+        addToWishlistBtn.addEventListener('click', function() {
+          const productName = "Premium Zip Hoodie";
+          const productPrice = 69.99;
+          const productColor = document.getElementById('selectedColor').textContent;
+          const productImage = document.getElementById('mainImage').src;
+          
+          // Check if product already exists in wishlist
+          const existingProductIndex = wishlist.findIndex(item => 
+            item.name === productName && 
+            item.color === productColor
+          );
+          
+          if (existingProductIndex !== -1) {
+            // Remove from wishlist if already exists
+            wishlist.splice(existingProductIndex, 1);
+            showToast(
+              'Removed from wishlist', 
+              `${productName} - ${productColor} has been removed from your wishlist.`
+            );
+          } else {
+            // Add new product to wishlist
+            wishlist.push({
+              name: productName,
+              price: productPrice,
+              color: productColor,
+              image: productImage
+            });
+            showToast(
+              'Added to wishlist', 
+              `${productName} - ${productColor} has been added to your wishlist.`
+            );
+          }
+          
+          // Save wishlist to localStorage
+          localStorage.setItem('wishlist', JSON.stringify(wishlist));
+          
+          // Update wishlist count and buttons
+          updateWishlistCount();
+          updateWishlistButtons();
+          
+          // Add animation to heart icon
+          const heartIcon = addToWishlistBtn.querySelector('.wishlist-heart');
+          heartIcon.classList.add('pulse');
+          setTimeout(() => {
+            heartIcon.classList.remove('pulse');
+          }, 500);
+        });
+      }
+      
+      // Wishlist Product Buttons (for product cards)
+      const wishlistProductBtns = document.querySelectorAll('.wishlist-product-btn');
+      wishlistProductBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const productContainer = this.closest('.product-image-container') || this.closest('.product-card');
+          const productName = this.getAttribute('data-product') || productContainer.querySelector('h3')?.textContent || "Product";
+          const productPrice = parseFloat(this.getAttribute('data-price')) || 0;
+          const productImage = productContainer.querySelector('img')?.src || '';
+          
+          // Check if product already exists in wishlist
+          const existingProductIndex = wishlist.findIndex(item => item.name === productName);
+          
+          if (existingProductIndex !== -1) {
+            // Remove from wishlist if already exists
+            wishlist.splice(existingProductIndex, 1);
+            showToast(
+              'Removed from wishlist', 
+              `${productName} has been removed from your wishlist.`
+            );
+          } else {
+            // Add new product to wishlist
+            wishlist.push({
+              name: productName,
+              price: productPrice,
+              color: "Default",
+              image: productImage
+            });
+            showToast(
+              'Added to wishlist', 
+              `${productName} has been added to your wishlist.`
+            );
+          }
+          
+          // Save wishlist to localStorage
+          localStorage.setItem('wishlist', JSON.stringify(wishlist));
+          
+          // Update wishlist count and buttons
+          updateWishlistCount();
+          updateWishlistButtons();
+          
+          // Add animation to heart icon
+          const heartIcon = this.querySelector('.wishlist-heart');
+          heartIcon.classList.add('pulse');
+          setTimeout(() => {
+            heartIcon.classList.remove('pulse');
+          }, 500);
+        });
+      });
+      
+      // Update wishlist count
+      function updateWishlistCount() {
+        const wishlistBadge = document.querySelector('.wishlist-badge');
+        if (wishlistBadge) {
+          if (wishlist.length > 0) {
+            wishlistBadge.textContent = wishlist.length;
+            wishlistBadge.classList.remove('hidden');
+          } else {
+            wishlistBadge.classList.add('hidden');
+          }
+        }
+      }
+      
+      // Update wishlist buttons
+      function updateWishlistButtons() {
+        // Main product wishlist button
+        const addToWishlistBtn = document.getElementById('addToWishlistBtn');
+        if (addToWishlistBtn) {
+          const productName = "Premium Zip Hoodie";
+          const productColor = document.getElementById('selectedColor').textContent;
+          
+          const isInWishlist = wishlist.some(item => 
+            item.name === productName && 
+            item.color === productColor
+          );
+          
+          const heartIcon = addToWishlistBtn.querySelector('.wishlist-heart');
+          if (isInWishlist) {
+            heartIcon.classList.add('active');
+            heartIcon.classList.remove('fa-regular');
+            heartIcon.classList.add('fa-solid');
+            addToWishlistBtn.textContent = '';
+            addToWishlistBtn.appendChild(heartIcon);
+            addToWishlistBtn.appendChild(document.createTextNode(' Remove from Wishlist'));
+          } else {
+            heartIcon.classList.remove('active');
+            heartIcon.classList.remove('fa-solid');
+            heartIcon.classList.add('fa-regular');
+            addToWishlistBtn.textContent = '';
+            addToWishlistBtn.appendChild(heartIcon);
+            addToWishlistBtn.appendChild(document.createTextNode(' Add to Wishlist'));
+          }
+        }
+        
+        // Product card wishlist buttons
+        const wishlistProductBtns = document.querySelectorAll('.wishlist-product-btn');
+        wishlistProductBtns.forEach(btn => {
+          const productContainer = btn.closest('.product-image-container') || btn.closest('.product-card');
+          const productName = btn.getAttribute('data-product') || productContainer.querySelector('h3')?.textContent || "Product";
+          
+          const isInWishlist = wishlist.some(item => item.name === productName);
+          
+          const heartIcon = btn.querySelector('.wishlist-heart');
+          if (isInWishlist) {
+            heartIcon.classList.add('active');
+            heartIcon.classList.remove('fa-regular');
+            heartIcon.classList.add('fa-solid');
+            heartIcon.style.color = '#ef4444';
+          } else {
+            heartIcon.classList.remove('active');
+            heartIcon.classList.remove('fa-solid');
+            heartIcon.classList.add('fa-regular');
+            heartIcon.style.color = '';
+          }
+        });
+      }
+    }
+    
+    // Toast Notification
+    function initToastNotification() {
+      const toastNotification = document.getElementById('toastNotification');
+      const closeToast = document.getElementById('closeToast');
+      const toastViewCart = document.getElementById('toastViewCart');
+      const toastCheckout = document.getElementById('toastCheckout');
+      
+      // Close toast
+      closeToast.addEventListener('click', function() {
+        hideToast();
+      });
+      
+      // View cart button
+      toastViewCart.addEventListener('click', function() {
+        hideToast();
+        openCheckoutModal();
+      });
+      
+      // Checkout button
+      toastCheckout.addEventListener('click', function() {
+        hideToast();
+        openCheckoutModal();
+      });
+    }
+    
+    // Show toast notification
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').innerText = title;
+      document.getElementById('toastMessage').innerText = message;
+
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Hide toast notification
+    function hideToast() {
+      const toastNotification = document.getElementById('toastNotification');
+      toastNotification.classList.remove('show');
+    }
+    
+    // Checkout Modal
+    function initCheckoutModal() {
+      const checkoutModal = document.getElementById('checkoutModal');
+      const closeCheckout = document.getElementById('closeCheckout');
+      const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+      
+      // Close checkout modal
+      closeCheckout.addEventListener('click', function() {
+        checkoutModal.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+      });
+      
+      // Close on outside click
+      checkoutModal.addEventListener('click', function(e) {
+        if (e.target === checkoutModal) {
+          checkoutModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && checkoutModal.classList.contains('show')) {
+          checkoutModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Confirm order button
+      confirmOrderBtn.addEventListener('click', function() {
+        // Clear cart
+        localStorage.setItem('cart', JSON.stringify([]));
+        
+        // Update cart count
+        const cartBadge = document.querySelector('.cart-badge');
+        if (cartBadge) {
+          cartBadge.textContent = '0';
+        }
+        
+        // Close checkout modal
+        checkoutModal.classList.remove('show');
+        
+        // Show success modal
+        openSuccessModal();
+      });
+    }
+    
+    // Open checkout modal
+    function openCheckoutModal() {
+      const checkoutModal = document.getElementById('checkoutModal');
+      const checkoutItems = document.getElementById('checkoutItems');
+      const subtotalAmount = document.getElementById('subtotalAmount');
+      const shippingAmount = document.getElementById('shippingAmount');
+      const taxAmount = document.getElementById('taxAmount');
+      const totalAmount = document.getElementById('totalAmount');
+      
+      // Get cart from localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Clear checkout items
+      checkoutItems.innerHTML = '';
+      
+      // Add cart items to checkout
+      if (cart.length === 0) {
+        checkoutItems.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+        subtotalAmount.textContent = '$0.00';
+        shippingAmount.textContent = '$0.00';
+        taxAmount.textContent = '$0.00';
+        totalAmount.textContent = '$0.00';
+      } else {
+        let subtotal = 0;
+        
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          subtotal += itemTotal;
+          
+          const itemElement = document.createElement('div');
+          itemElement.className = 'flex items-center bg-white p-4 rounded-lg shadow-sm';
+          itemElement.innerHTML = `
+            <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-md overflow-hidden">
+              <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-medium">${item.name}</h4>
+              <p class="text-sm text-gray-500">Color: ${item.color} | Size: ${item.size}</p>
+              <div class="flex justify-between mt-2">
+                <div class="flex items-center">
+                  <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded-l-md hover:bg-gray-300 transition decrease-quantity" data-index="${index}">
+                    <i class="fa-solid fa-minus text-xs"></i>
+                  </button>
+                  <span class="px-3 py-1 border-y border-gray-200">${item.quantity}</span>
+                  <button class="bg-gray-200 text-gray-700 px-2 py-1 rounded-r-md hover:bg-gray-300 transition increase-quantity" data-index="${index}">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                  </button>
+                </div>
+                <div class="flex items-center">
+                  <span class="font-medium mr-3">$${itemTotal.toFixed(2)}</span>
+                  <button class="text-red-500 hover:text-red-700 transition remove-item" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          checkoutItems.appendChild(itemElement);
+        });
+        
+        // Add event listeners to quantity buttons and remove buttons
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            if (cart[index].quantity > 1) {
+              cart[index].quantity--;
+              localStorage.setItem('cart', JSON.stringify(cart));
+              openCheckoutModal(); // Refresh the modal
+              updateCartCount();
+            }
+          });
+        });
+        
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            cart[index].quantity++;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            openCheckoutModal(); // Refresh the modal
+            updateCartCount();
+          });
+        });
+        
+        document.querySelectorAll('.remove-item').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            openCheckoutModal(); // Refresh the modal
+            updateCartCount();
+          });
+        });
+        
+        // Calculate totals
+        const shipping = subtotal >= 75 ? 0 : 5.99;
+        const tax = subtotal * 0.08;
+        const total = subtotal + shipping + tax;
+        
+        // Update totals
+        subtotalAmount.textContent = `$${subtotal.toFixed(2)}`;
+        shippingAmount.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+        taxAmount.textContent = `$${tax.toFixed(2)}`;
+        totalAmount.textContent = `$${total.toFixed(2)}`;
+      }
+      
+      // Show checkout modal
+      checkoutModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartBadge = document.querySelector('.cart-badge');
+      if (cartBadge) {
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartBadge.textContent = totalItems;
+      }
+    }
+    
+    // Update wishlist count
+    function updateWishlistCount() {
+      const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+      const wishlistBadge = document.querySelector('.wishlist-badge');
+      if (wishlistBadge) {
+        if (wishlist.length > 0) {
+          wishlistBadge.textContent = wishlist.length;
+          wishlistBadge.classList.remove('hidden');
+        } else {
+          wishlistBadge.classList.add('hidden');
+        }
+      }
+    }
+    
+    // Success Modal
+    function initSuccessModal() {
+      const successModal = document.getElementById('successModal');
+      const backToShopBtn = document.getElementById('backToShopBtn');
+      
+      // Back to shop button
+      backToShopBtn.addEventListener('click', function() {
+        successModal.classList.remove('show');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        window.location.href = 'shop.html';
+      });
+      
+      // Close on outside click
+      successModal.addEventListener('click', function(e) {
+        if (e.target === successModal) {
+          successModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && successModal.classList.contains('show')) {
+          successModal.classList.remove('show');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Open success modal
+    function openSuccessModal() {
+      const successModal = document.getElementById('successModal');
+      successModal.classList.add('show');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    // Buy Now Buttons
+    function initBuyNowButtons() {
+      const buyNowBtns = document.querySelectorAll('.buy-now-btn');
+      
+      buyNowBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Get product details
+          const productName = this.getAttribute('data-product') || "Premium Zip Hoodie";
+          const productPrice = parseFloat(this.getAttribute('data-price')) || 69.99;
+          const productColor = document.getElementById('selectedColor')?.textContent || "Default";
+          const productSize = document.getElementById('selectedSize')?.textContent || "M";
+          const productQuantity = parseInt(document.getElementById('quantity')?.value || 1);
+          const productImage = this.closest('.product-image-container')?.querySelector('img')?.src || '';
+          
+          // Create cart with only this product
+          const cart = [{
+            name: productName,
+            price: productPrice,
+            color: productColor,
+            size: productSize,
+            quantity: productQuantity,
+            image: productImage
+          }];
+          
+          // Save cart to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Update cart count
+          const cartBadge = document.querySelector('.cart-badge');
+          if (cartBadge) {
+            cartBadge.textContent = productQuantity.toString();
+            
+            // Add animation to cart badge
+            cartBadge.classList.add('pulse');
+            setTimeout(() => {
+              cartBadge.classList.remove('pulse');
+            }, 500);
+          }
+          
+          // Open checkout modal
+          openCheckoutModal();
+        });
+      });
+    }
+  </script>
+</body>
+</html>
